@@ -1,4 +1,5 @@
 import { NextPage } from 'next';
+import Layout from '../components/Layout';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 
@@ -21,26 +22,15 @@ const Home: NextPage = () => {
   return (
     <div>
       <Head>
-        <title> 
-        WestDoor is {title}
-        </title>
+        <title>WestDoor is {title}</title>
       </Head>
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          The WestDoor
-        </h1>
-        <small>not northdoor</small>
-        <nav>
-
-        </nav>
-        <article>
-
-        </article>
-      </main>
-
-      <footer>
-
-      </footer>
+      <Layout>
+        <main>
+          <div>THE WESTDOOR</div>
+          <div>耶稣在加利利海边行走的时候，看见兄弟二人，就是名叫彼得的西门和他的弟弟安得烈，正在把网撒到海里去；他们是渔夫。 19 耶稣就对他们说：“来跟从我，我要使你们作得人的渔夫。” 20 他们立刻撇下网，跟从了他。</div>
+          <div>————【马太福音：4:18-20】</div>
+        </main>
+      </Layout>
     </div>
   );
 };
