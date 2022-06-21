@@ -24,13 +24,17 @@
 
     strong {
       position: relative;
-      border-bottom: 4px solid #d23669;
-      border-radius: 2px;
     }
 
-    strong:hover {
-      background-color: #d23669;
-      color: white;
+    strong::before {
+      content: "";
+      position: absolute;
+      left: 5%;
+      bottom: -2px;
+      width: 36px;
+      height: 8px;
+      background: rgba(238, 111, 87, 0.5);
+      z-index: -99;
     }
 
     .source {

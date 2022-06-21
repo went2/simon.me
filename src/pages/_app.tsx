@@ -11,7 +11,7 @@ function App({ Component, pageProps }: AppProps) {
     // browser api need to be execucted in useEffect
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'hidden') {
-        setTitle('Closed');
+        setTitle('Hidden');
       } else {
         setTitle('Open');
       }

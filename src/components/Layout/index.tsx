@@ -11,11 +11,11 @@ const Layout: NextPage<any> = ({children}) => {
     <>
       <Header />
       {children}
-      <footer>
+      {/* <footer>
         <div>
           powered by next.js
         </div>
-      </footer>
+      </footer> */}
     </>
   ); 
 };

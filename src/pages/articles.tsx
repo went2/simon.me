@@ -1,19 +1,32 @@
 import { NextPage } from 'next';
-import Layout from '../components/Layout';
+import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next'
+import { getSortedArticleList, IArticle } from '../utils/articles';
+import styles from '../styles/Articles.module.scss';
 
-const Articles: NextPage = () => {
+// pre-rendering
+export const getStaticProps: GetStaticProps = async (context) => {
+  const articleList = getSortedArticleList();
+
+  return {
+    props: {
+      articleList
+    }
+  }
+};
+
+const Articles: NextPage = (props: {articleList?: Array<IArticle>}) => {
   return (
-    <Layout>
-      <article>
-        <div>
-          <h2>标题1</h2>
-          <div>meta data of article</div>
-          <p>
-            一句话描述一句话描述一句话描述一句话描述一句话描述
-          </p>
-        </div>
-      </article>
-    </Layout>
+    <main className={styles.articleContainer}>
+      {
+        props.articleList!.map(({id, date, title, abstract}) => (
+          <article key={id}>
+            <div>{date}</div>
+            <h2>{title}</h2>
+            <p>{abstract}</p>
+          </article>
+        ))
+      }
+    </main>
   );
 };
 
