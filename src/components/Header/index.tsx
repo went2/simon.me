@@ -1,10 +1,10 @@
 import { NextPage } from "next";
-import styles from './Header.module.css';
+import styles from './Header.module.scss';
 
 const Header: NextPage = () => {
 
   return (
-    <div className={styles.headerContainer}>
+    <div className={styles.header}>
       <div>Logo</div>
       <ul className={styles.headerNav}>
         <li>文章</li>

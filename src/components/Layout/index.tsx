@@ -8,16 +8,15 @@ import Header from '../Header';
 const Layout: NextPage<any> = ({children}) => {
 
   return (
-    <div>
+    <>
       <Header />
-
       {children}
       <footer>
         <div>
           powered by next.js
         </div>
       </footer>
-    </div>
+    </>
   ); 
 };
 

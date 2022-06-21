@@ -20,7 +20,7 @@ const Home: NextPage = () => {
   }, [])
 
   return (
-    <div>
+    <>
       <Head>
         <title>WestDoor is {title}</title>
       </Head>
@@ -31,7 +31,7 @@ const Home: NextPage = () => {
           <div>————【马太福音：4:18-20】</div>
         </main>
       </Layout>
-    </div>
+    </>
   );
 };
 
