@@ -2,6 +2,8 @@ import { NextPage, GetStaticPaths, GetStaticProps } from "next";
 import Layout from "../../components/Layout";
 import { getArticleIds, getArticleDetail, IArticle } from '../../utils/articles';
 
+import Date from '../../components/Date';
+
 // return a list of possible value for id
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths = getArticleIds();
@@ -25,8 +27,8 @@ const Article: NextPage = (props: { detail?: IArticle }) => {
   const detail = props.detail as IArticle;
   
   return (
-    <Layout>
-      { detail.date }
+    <main>
+      <Date dateString={ detail.date } />
       <br />
       { detail.title }
       <br />
@@ -35,7 +37,7 @@ const Article: NextPage = (props: { detail?: IArticle }) => {
       <div
         dangerouslySetInnerHTML={{__html: detail.htmlContent as string}}
       />
-    </Layout>
+    </main>
   );
 };
 

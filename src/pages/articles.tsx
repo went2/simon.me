@@ -1,7 +1,9 @@
 import { NextPage } from 'next';
+import Link from 'next/link';
 import { GetStaticProps, GetStaticPaths } from 'next'
 import { getSortedArticleList, IArticle } from '../utils/articles';
 import styles from '../styles/Articles.module.scss';
+import Date from '../components/Date';
 
 // pre-rendering
 export const getStaticProps: GetStaticProps = async (context) => {
@@ -20,9 +22,15 @@ const Articles: NextPage = (props: {articleList?: Array<IArticle>}) => {
       {
         props.articleList!.map(({id, date, title, abstract}) => (
           <article key={id}>
-            <div>{date}</div>
-            <h2>{title}</h2>
-            <p>{abstract}</p>
+            <small>
+              <Date dateString={date} />
+            </small>
+            <br />
+            <Link href={`/articles/${id}`}>
+              <a>{title}</a>
+            </Link>
+            <br />
+            <small>{abstract}</small>
           </article>
         ))
       }
