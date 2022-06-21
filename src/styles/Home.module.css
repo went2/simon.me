@@ -1,5 +1,47 @@
-.nav {
-  border-style: solid;
-  border-image: linear-gradient(to right, ivory, firebrick) 4;
-  border-width: 0 0 2px 0;
+.home {
+  width: 100%;
+  max-width: 1280px;
+  padding: 0 10px;
+}
+
+.home .title {
+  display: flex;
+  margin: 2rem auto;
+}
+
+.home .title p {
+  margin: 0 auto;
+  font-weight: 700;
+  font-size: 8rem;
+  letter-spacing: -8px;
+}
+
+.home .quote {
+  max-width: 620px;
+  margin: 0 auto;
+  font-size: 20px;
+  line-height: 30px;
+  color: var(--text-secondary);
+}
+
+.home .quote strong {
+  position: relative;
+  border-bottom: 4px solid #d23669;
+  border-radius: 2px;
+}
+
+.home .quote strong:hover {
+  background-color: #d23669;
+  color: white;
+}
+
+.home .quote .source {
+  display: flex;
+  font-size: 14px;
+  color: var(--text-inactive);
+}
+
+.home .quote .source p {
+  margin: 1rem auto;
+  border-top: 1px solid var(--text-inactive);
 }

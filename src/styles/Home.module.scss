@@ -1,0 +1,47 @@
+.home {
+  width: 100%;
+  max-width: 1280px;
+  padding: 0 10px;
+
+  .title {
+    display: flex;
+    margin: 2rem auto;
+
+    p {
+      margin: 0 auto;
+      font-weight: 700;
+      font-size: 8rem;
+      letter-spacing: -8px;
+    }
+  }
+
+  .quote {
+    max-width: 620px;
+    margin: 0 auto;
+    font-size: 20px;
+    line-height: 30px;
+    color: var(--text-secondary);
+
+    strong {
+      position: relative;
+      border-bottom: 4px solid #d23669;
+      border-radius: 2px;
+    }
+
+    strong:hover {
+      background-color: #d23669;
+      color: white;
+    }
+
+    .source {
+      display: flex;
+      font-size: 14px;
+      color: var(--text-inactive);
+
+      p {
+        margin: 1rem auto;
+        border-top: 1px solid var(--text-inactive);
+      }
+    }
+  }
+}
