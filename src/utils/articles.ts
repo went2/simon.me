@@ -5,6 +5,8 @@
 import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
+import { remark } from 'remark';
+import html from 'remark-html';
 
 const articleDir = path.join(process.cwd(), 'articles');
 
@@ -13,6 +15,7 @@ export interface IArticle {
   title: string;
   abstract: string;
   date: string;
+  htmlContent?: string
 }
 
 export function getSortedArticleList() {
@@ -41,4 +44,34 @@ export function getSortedArticleList() {
       return 0;
     }
   });
+}
+
+export function getArticleIds() {
+  const fileNames = fs.readdirSync(articleDir);
+  return fileNames.map(fileName => {
+    return {
+      params: {
+        id: fileName.replace(/\.md$/, '')
+      }
+    }
+  })
+}
+
+export async function getArticleDetail(id: string) {
+  const filePath = path.join(articleDir, `${id}.md`);
+  const fileContent = fs.readFileSync(filePath, 'utf8');
+
+  const matterResult = matter(fileContent);
+
+  const processedContent = await remark()
+    .use(html)
+    .process(matterResult.content)
+  
+  const htmlContent = processedContent.toString();
+
+  return {
+    id,
+    htmlContent,
+    ...matterResult.data
+  } as IArticle
 }

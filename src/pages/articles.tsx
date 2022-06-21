@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import { GetStaticProps, GetStaticPaths, GetServerSideProps } from 'next'
+import { GetStaticProps, GetStaticPaths } from 'next'
 import { getSortedArticleList, IArticle } from '../utils/articles';
 import styles from '../styles/Articles.module.scss';
 
