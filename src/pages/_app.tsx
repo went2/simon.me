@@ -1,6 +1,6 @@
 import '../styles/global.scss';
 import type { AppProps } from 'next/app';
-import {useState, useEffect} from 'react';
+import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Layout from '../components/Layout';
 
@@ -21,7 +21,7 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
-        <title>WestDoor is {title}</title>
+        <title>WestDoor {title}</title>
       </Head>
       <Layout>
         <Component {...pageProps} />

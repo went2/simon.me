@@ -16,25 +16,36 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 };
 
-const Articles: NextPage = (props: {articleList?: Array<IArticle>}) => {
+const Articles: NextPage = (props: { articleList?: Array<IArticle> }) => {
   return (
-    <main className={styles.articleContainer}>
-      {
-        props.articleList!.map(({id, date, title, abstract}) => (
-          <article key={id}>
-            <small>
-              <Date dateString={date} />
-            </small>
-            <br />
-            <Link href={`/articles/${id}`}>
-              <a>{title}</a>
-            </Link>
-            <br />
-            <small>{abstract}</small>
-          </article>
-        ))
-      }
-    </main>
+    <div className={styles.articleWrapper}>
+      <aside className={styles.sideBar}>
+        <div className={styles.categoryList}>
+          <header className={styles.categoryHeader}>分类</header>
+          <div className={styles.categoryItem}>笔记</div>
+          <div className={styles.categoryItem}>感想</div>
+          <div className={styles.categoryItem}>备忘</div>
+        </div>
+      </aside>
+      <main className={styles.articleList}>
+        {
+          props.articleList!.map(({ id, date, title, abstract }) => (
+            <article key={id} className={styles.article}>
+              <header>
+                <div className={styles.articleDate}>
+                  <Date dateString={date} />
+                </div>
+                <Link href={`/articles/${id}`}>
+                  <a className={styles.articleTitle}>{title}</a>
+                </Link>
+              </header>
+              <div className={styles.articleAbstract}>{abstract}</div>
+            </article>
+          ))
+        }
+      </main>
+
+    </div>
   );
 };
 
