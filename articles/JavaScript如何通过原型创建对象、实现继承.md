@@ -95,6 +95,9 @@ stu1.printName()
 ### 参考
 
 [酷壳: 如此理解面向对象编程](http://coolshell.cn/articles/6441.html)
+
 [酷壳: 再谈javascript面向对象编程](http://coolshell.cn/articles/6668.html)
+
 [Scott Allen: Prototypes and Inheritance in JavaScript](https://docs.microsoft.com/en-us/previous-versions/msdn10/ff852808(v=msdn.10))
+
 [Douglas Crockford: Advanced JavaScript](https://www.youtube.com/watch?v=DwYPG6vreJg)
