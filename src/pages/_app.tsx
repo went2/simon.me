@@ -21,6 +21,7 @@ function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <Head>
+        <link rel="icon" type='image/x-icon' href='/favicon.ico' />
         <title>WestDoor {title}</title>
       </Head>
       <Layout>
