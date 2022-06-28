@@ -23,6 +23,10 @@
 
     li {
       margin-left: 0rem;
+
+      a {
+        color: var(--text-primary);
+      }
     }
   }
 }

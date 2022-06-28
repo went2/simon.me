@@ -6,7 +6,7 @@
 
 .base-info {
   max-width: 400px;
-  margin: 0 auto;
+  margin-left: 10px;
 
   .contact {
     margin-top: 12px;
@@ -19,7 +19,6 @@
 .panel {
   margin: 1rem auto;
   position: relative;
-
 
   &-header {
     font-size: 20px;
@@ -37,11 +36,12 @@
     font-size: 14px;
     color: whitesmoke;
     margin-right: 5px;
-
   }
 
   &-content {
     padding: 1rem;
+    border: 1px solid #e5e5e5;
+
   }
 
 

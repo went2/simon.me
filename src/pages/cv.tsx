@@ -1,5 +1,6 @@
 import { NextPage } from 'next';
 import styles from '../styles/Cv.module.scss';
+import CollapseContent from '../components/CollapseContent';
 
 const Cv: NextPage = () => {
   return (
@@ -20,10 +21,9 @@ const Cv: NextPage = () => {
         </div>
       </div>
 
-      <div className={styles.panel}>
-        <div className={styles.panelHeader}>个人总结</div>
-        <div className={styles.panelContent}>M.S. degree in Biology, worked as a research assistant and a science editor, before starting to build career in software developing. Spent one year in self-learning, then got accepted by San Francisco State University and granted M.S. degree in Computer Science. Now working on Android development as a software engineer.</div>
-      </div>
+      <CollapseContent title='个人总结'>
+        M.S. degree in Biology, worked as a research assistant and a science editor, before starting to build career in software developing. Spent one year in self-learning, then got accepted by San Francisco State University and granted M.S. degree in Computer Science. Now working on Android development as a software engineer.
+      </CollapseContent>
 
       <div className={styles.panel}></div>
 
