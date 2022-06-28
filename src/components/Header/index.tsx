@@ -23,8 +23,8 @@ const Header: NextPage = () => {
           </Link>
         </li>
         <li>
-          <Link href='/resume'>
-            <a>简历</a>
+          <Link href='/cv'>
+            <a>CV</a>
           </Link>
         </li>
       </ul>

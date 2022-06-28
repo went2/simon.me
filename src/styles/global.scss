@@ -13,12 +13,18 @@ body {
 }
 
 a {
-  color: inherit;
+  color: var(--text-link);
   text-decoration: none;
 }
 
+
 li {
   list-style-type: none;
+}
+
+h1,
+p {
+  margin: 0;
 }
 
 :root {

@@ -1,0 +1,48 @@
+.cv {
+  max-width: 768px;
+  margin: 1rem auto;
+  color: #333;
+}
+
+.base-info {
+  max-width: 400px;
+  margin: 0 auto;
+
+  .contact {
+    margin-top: 12px;
+    line-height: 1.6rem;
+  }
+
+  .social-media {}
+}
+
+.panel {
+  margin: 1rem auto;
+  position: relative;
+
+
+  &-header {
+    font-size: 20px;
+    padding: 12px 8px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px 10px 0 0;
+    background-color: #f5f5f5;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  &-header::before {
+    content: "\02795";
+    font-size: 14px;
+    color: whitesmoke;
+    margin-right: 5px;
+
+  }
+
+  &-content {
+    padding: 1rem;
+  }
+
+
+}
