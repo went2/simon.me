@@ -25,24 +25,21 @@
   }
 
   .collapse-wrapper {
-    transform-origin: center top;
-    overflow: hidden;
-    transition: max-height 200ms linear;
-    max-height: 100vh;
-    // background-color: antiquewhite;
+    overflow: auto;
   }
 
   .collapsed {
-    max-height: 0px;
+    // max-height: 0px;
+    display: none;
   }
 
   .expanded {
-    max-height: 100vh;
+    // max-height: 100vh;
+    display: block;
   }
 
   .content {
     padding: 18px;
-    // border-bottom: 1px solid #e5e5e5;
   }
 
 }
