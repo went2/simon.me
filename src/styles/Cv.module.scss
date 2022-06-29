@@ -16,33 +16,94 @@
   .social-media {}
 }
 
-.panel {
-  margin: 1rem auto;
-  position: relative;
+.exp-container {
+  margin-bottom: 15px;
+  padding: 2px 8px 15px 8px;
+  border-bottom: 1px solid #ccc;
 
-  &-header {
-    font-size: 20px;
-    padding: 12px 8px;
-    border: 1px solid #e5e5e5;
-    border-radius: 10px 10px 0 0;
-    background-color: #f5f5f5;
-    cursor: pointer;
+  .exp-header {
+    border-bottom: 1px dashed #ccc;
+    padding-bottom: 5px;
+  }
+
+  .exp-header-with-flex {
+    // border-bottom: 1px dashed #ccc;
+    padding-bottom: 5px;
+    padding-right: 10px;
     display: flex;
-    align-items: center;
+    justify-content: space-between;
   }
 
-  &-header::before {
-    content: "\02795";
-    font-size: 14px;
-    color: whitesmoke;
-    margin-right: 5px;
+  .exp-des {
+    margin-top: 12px;
+    line-height: 1.4rem;
+    padding: 0 5px;
+
+    p {
+      margin: 6px 0;
+    }
+
+    .job-des {
+      p:first-child {
+        font-size: 1.05rem;
+        margin: 10px 0 5px 0;
+      }
+
+      ul {
+        padding-left: 20px;
+
+        li {
+          margin: 5px 0;
+        }
+
+        li::before {
+          content: "\279C";
+          position: relative;
+          right: 2px;
+        }
+
+      }
+
+    }
   }
 
-  &-content {
-    padding: 1rem;
-    border: 1px solid #e5e5e5;
+  .exp-des-edu {
+    margin-top: 12px;
+    line-height: 1.4rem;
+    padding: 0 5px;
 
+    p {
+      margin: 6px 0;
+    }
+
+    ul {
+      padding-left: 20px;
+
+      li {
+        margin: 6px 0;
+
+        a:hover {
+          border-bottom: 1px dashed var(--text-link);
+        }
+      }
+
+      li::before {
+        content: "\1F4DD";
+        position: relative;
+        right: 2px;
+      }
+    }
+
+    .thesis::before {
+      content: "\1F4D6";
+      position: relative;
+      right: 2px;
+    }
   }
+}
 
-
+.exp-container:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }

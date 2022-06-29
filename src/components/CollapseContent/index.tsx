@@ -1,4 +1,3 @@
-import { NextPage } from 'next';
 import { useState } from 'react';
 import styles from './CollapseContent.module.scss';
 
@@ -8,7 +7,7 @@ interface PropsType {
   children?: React.ReactNode;
 }
 
-const CollapseContent: NextPage<PropsType> = ({ title, collapsed = false, children }) => {
+const CollapseContent = ({ title, collapsed = false, children }: PropsType): JSX.Element => {
   const [isCollapsed, setIsCollapsed] = useState(collapsed);
 
   return (
