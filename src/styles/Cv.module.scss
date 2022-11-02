@@ -6,14 +6,35 @@
 
 .base-info {
   max-width: 400px;
-  margin-left: 10px;
+  margin-left: 1.2rem;
 
-  .contact {
-    margin-top: 12px;
-    line-height: 1.6rem;
+  .title {
+    display: flex;
+    align-items: baseline;
+
+    .name {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+
+    .job {
+      margin-left: .7rem;
+    }
   }
 
-  .social-media {}
+  .items {
+    margin-top: 0.4rem;
+
+    .item {
+      margin: 2px 0;
+      display: flex;
+      align-items: center;
+      
+      svg {
+        margin-right: .3rem;
+      }
+    }
+  }
 }
 
 .exp-container {
