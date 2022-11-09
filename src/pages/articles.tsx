@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 import Link from 'next/link';
-import { GetStaticProps, GetStaticPaths } from 'next'
+import { GetStaticProps } from 'next'
 import { getSortedArticleList, IArticle } from '../utils/articles';
 import styles from '../styles/Articles.module.scss';
 import Date from '../components/Date';
@@ -44,7 +44,6 @@ const Articles: NextPage = (props: { articleList?: Array<IArticle> }) => {
           ))
         }
       </main>
-
     </div>
   );
 };

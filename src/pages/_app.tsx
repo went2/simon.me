@@ -2,6 +2,7 @@ import '../styles/global.scss';
 import type { AppProps } from 'next/app';
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
+import Script from 'next/script';
 import Layout from '../components/Layout';
 
 function App({ Component, pageProps }: AppProps) {
@@ -16,15 +17,18 @@ function App({ Component, pageProps }: AppProps) {
         setTitle('Open');
       }
     });
-  }, [])
+  }, []);
+
+  const siteTitle = `WestDoor ${title}`;
 
   return (
     <>
       <Head>
         <link rel="icon" type='image/x-icon' href='/favicon.ico' />
-        <title>WestDoor {title}</title>
+        <title>{siteTitle}</title>
       </Head>
       <Layout>
+        <Script src="https://kit.fontawesome.com/db1b573488.js" crossOrigin="anonymous" />
         <Component {...pageProps} />
       </Layout>
     </>

@@ -1,12 +1,13 @@
 .cv {
-  max-width: 768px;
+  max-width: 610px;
   margin: 1rem auto;
   color: #333;
+  padding: 0 1rem;
 }
 
 .base-info {
-  max-width: 400px;
-  margin-left: 1.2rem;
+  // max-width: 400px;
+  margin: 0 auto;
 
   .title {
     display: flex;
@@ -23,6 +24,7 @@
   }
 
   .items {
+
     margin-top: 0.4rem;
 
     .item {

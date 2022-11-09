@@ -1,9 +1,6 @@
 .header {
-  // background-color: var(--background-light);
-  background-color: rgba(255, 255, 255, .9);
+  background-color: rgba(255, 255, 255, .2);
   border-bottom: 1px solid rgba(163, 163, 163, .2);
-  position: sticky;
-  top:0;
 
   &-nav {
     max-width: 600px;
@@ -22,9 +19,13 @@
         a {
           color: rgba(115,115,115);
           padding: 8px 40px;
-          border: 1px solid rgba(115,115,115, .5);
+          // border: 1px solid rgba(115,115,115, .5);
           font-weight: 500;
           border-radius: 5px;
+        }
+        a:hover {
+          background-color: #fafafa;
+          color: #000;
         }
       }
 

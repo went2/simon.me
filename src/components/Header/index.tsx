@@ -1,25 +1,32 @@
 import { NextPage } from "next";
 import styles from './Header.module.scss';
 import Link from 'next/link';
+import { INavItem } from '../../utils/navbar';
+
+const navList: INavItem[] = [
+  { name: '首页', path: '/', icon: 'fa fa-home' },
+  { name: '文章', path: '/articles', icon: 'fa fa-book' },
+  { name: '项目', path: '/projects', icon: 'fa fa-product-hunt' },
+  { name: 'cv', path: '/cv', icon: 'fa fa-at' },
+];
+
 
 const Header: NextPage = () => {
-
+  
   return (
     <header className={styles.header}>
       <section className={styles.headerNav}>
         <ul>
-          <li>
-            <Link href='/'>首页</Link>
-          </li>
-          <li>
-            <Link href='/articles'>文章</Link>
-          </li>
-          <li>
-            <Link href='/projects'>项目</Link>
-          </li>
-          <li>
-            <Link href='/cv'>CV</Link>
-          </li>
+          {
+            navList.map((item, index) => (
+              <li key={index}>
+                <Link href={item.path}>
+                  <i className={item.icon}></i>
+                  {'\u00A0'} {item.name}
+                </Link>
+              </li>
+            ))
+          }
         </ul>
       </section>
     </header>

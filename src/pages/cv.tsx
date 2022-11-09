@@ -10,7 +10,6 @@ const Cv: NextPage = () => {
   return (
     <main className={styles.cv}>
       <div className={styles.info}>
-        <div className={styles.photo}></div>
         <div className={styles.baseInfo}>
           <div className={styles.title}>
             <strong className={styles.name}>俞文韬</strong>
