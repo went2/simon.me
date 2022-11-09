@@ -35,8 +35,8 @@ const Articles: NextPage = (props: { articleList?: Array<IArticle> }) => {
                 <div className={styles.articleDate}>
                   <Date dateString={date} />
                 </div>
-                <Link href={`/articles/${id}`}>
-                  <a className={styles.articleTitle}>{title}</a>
+                <Link href={`/articles/${id}`} className={styles.articleTitle}>
+                  {title}
                 </Link>
               </header>
               <div className={styles.articleAbstract}>{abstract}</div>

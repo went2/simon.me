@@ -42,7 +42,7 @@ const Cv: NextPage = () => {
       </div>
 
       <CollapseContent title='个人简介'>
-        教育技术学硕士毕业，在教育公司从事教学设计、产品运营等工作。后自学前端开发技术，目前从事前端开发，参与过后台管理系统、H5小游戏、移动端H5等类型应用的开发。
+        教育技术学硕士毕业，在教育公司从事教学设计、产品运营等工作。后自学前端开发技术，目前从事前端开发，开发过后台管理系统、H5小游戏、移动端H5、小程序等应用的界面。
       </CollapseContent>
 
       <CollapseContent title='工作经历'>
@@ -65,7 +65,7 @@ const Cv: NextPage = () => {
 
             <section className={styles.jobDes}>
               <p><strong>2.	H5 小游戏</strong></p>
-              <p>概述：在移动端玩的 H5 小游戏，规模如7k7k的“翻牌小游戏”。使用 Egret 引擎开发，build成压缩包，在 App 端下载使用。</p>
+              <p>概述：在移动端玩的 H5 小游戏。使用 Egret 引擎开发，build成压缩包，在 App 端下载使用。</p>
               <p>我的角色：调研与独立开发H5小游戏：前期花4天调研 Egret 系列工具（引擎API、龙骨动画制作工具），开发周期内与产品经理沟通需求，设计小游戏状态、资源、视图的管理，完成3个小游戏开发与部署。期间对 Egret 引擎Api、DragonBone 龙骨动画有较多使用。</p>
               <p>项目周期：2021.11-2021.12</p>
             </section>

@@ -2,29 +2,28 @@ import { NextPage } from "next";
 import styles from './Header.module.scss';
 import Link from 'next/link';
 
-
 const Header: NextPage = () => {
 
   return (
     <div className={styles.header}>
       <Link href='/'>
-        <a>Logo</a>
+        首页
       </Link>
 
       <ul className={styles.headerNav}>
         <li>
           <Link href='/articles'>
-            <a>文章</a>
+            文章
           </Link>
         </li>
         <li>
           <Link href='/projects'>
-            <a>项目</a>
+            项目
           </Link>
         </li>
         <li>
           <Link href='/cv'>
-            <a>CV</a>
+            CV
           </Link>
         </li>
       </ul>
