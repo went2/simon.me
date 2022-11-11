@@ -27,10 +27,13 @@ h2 {
 }
 
 a {
-  color: var(--text-link);
   text-decoration: none;
 }
 
+ul {
+  padding: 0;
+  margin: 0;
+}
 
 li {
   list-style-type: none;
@@ -57,8 +60,10 @@ li code, p code {
 }
 
 :root {
-  // background
+  // base color
+  --minion-yellow: #f0db4f;
   --background-light: #fff;
+  --dark-charcoal: #323330;
 
   // text
   --text-primary: #1b1b1b;
