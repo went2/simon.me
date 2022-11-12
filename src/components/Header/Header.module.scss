@@ -21,11 +21,11 @@
         background-color: var(--dark-charcoal);
         border-radius: 4px;
         display: inline-block;
+        box-shadow: 0 0 20px rgba(0,0,0, 0.2);
+      }
 
-        a {
-          // color: #f0db4f;
-          color: #f7fafb;
-        }
+      a {
+        color: #f7fafb;
       }
 
       .navLinks {
