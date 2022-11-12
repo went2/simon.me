@@ -3,6 +3,7 @@ import styles from './Layout.module.css';
 
 // components
 import Header from '../Header';
+import Footer from '../Footer';
 
 const Layout: NextPage<any> = ({ children }) => {
 
@@ -10,11 +11,7 @@ const Layout: NextPage<any> = ({ children }) => {
     <>
       <Header />
       { children }
-      {/* <footer>
-        <div>
-          powered by next.js
-        </div>
-      </footer> */}
+      <Footer />
     </>
   ); 
 };
