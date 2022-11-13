@@ -6,7 +6,7 @@ import JobTitle from '../components/CvContent/JobTitle';
 import CompanyName from '../components/CvContent/CompanyName';
 import WorkingYear from '../components/CvContent/WorkingYear';
 
-const Cv: NextPage = () => {
+const About: NextPage = () => {
   return (
     <main className={styles.cv}>
       <div className={styles.info}>
@@ -222,4 +222,4 @@ const Cv: NextPage = () => {
   );
 };
 
-export default Cv;
+export default About;

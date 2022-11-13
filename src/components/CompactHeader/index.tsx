@@ -1,10 +1,16 @@
-import { NextPage } from "next";
-import styles from './Header.module.scss';
+// types
+import type { NextPage } from "next";
+
+// styles
+import styles from './CompactHeader.module.scss';
+
+// components
 import Link from 'next/link';
+
 import { navList } from '../../model/navbar';
 import throttle from "../../utils/throttle";
 
-const Header: NextPage = () => {
+const CompactHeader: NextPage = () => {
   const rotate3dEffect = throttle((event: React.MouseEvent<HTMLHeadingElement>) => {
     const MOSTX = 12;
     const MOSTY = 12;
@@ -29,7 +35,7 @@ const Header: NextPage = () => {
     const ele = event.target as HTMLHeadingElement;
     ele.style.transition = 'none';
     ele.style.transform = `rotateY(${0}deg) rotateX(${0}deg)`;
-  }
+  };
 
   return (
     <header className={styles.header}>
@@ -46,7 +52,7 @@ const Header: NextPage = () => {
                 navList.map((item, index) => (
                   <li key={index}>
                     <Link href={item.path}>
-                       {item.name}
+                      {item.name}
                     </Link>
                   </li>
                 ))
@@ -54,12 +60,9 @@ const Header: NextPage = () => {
             </ul>
           </div>
         </div>
-        <p className={styles.indexAbout}>
-          我是一名前端工程师，大学就读教育技术学专业，毕业后在K12教育培训公司从事过教学设计、产品运营等工作。后自学前端开发，开发过后台管理系统、H5小游戏、移动端页面、小程序等应用。
-        </p>
       </section>
     </header>
   );
-};
+}
 
-export default Header;
+export default CompactHeader;

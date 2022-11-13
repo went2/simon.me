@@ -1,9 +1,19 @@
-import { NextPage } from 'next';
-import Link from 'next/link';
-import { GetStaticProps } from 'next'
-import { getSortedArticleList, IArticle } from '../utils/articles';
+// types
+import type { NextPageWithLayout } from './_app';
+import type { ReactElement } from 'react';
+
+// styles
 import styles from '../styles/Articles.module.scss';
+
+// api&utils
+import { GetStaticProps } from 'next';
+import { getSortedArticleList, IArticle } from '../utils/articles';
 import Date from '../components/Date';
+
+// components
+import Link from 'next/link';
+import Header from '../components/CompactHeader';
+import Layout from '../components/Layout';
 
 // pre-rendering
 export const getStaticProps: GetStaticProps = async (context) => {
@@ -16,7 +26,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 };
 
-const Articles: NextPage = (props: { articleList?: Array<IArticle> }) => {
+const Articles: NextPageWithLayout = (props: { articleList?: Array<IArticle> }) => {
   return (
     <div className={styles.articleWrapper}>
       <aside className={styles.sideBar}>
@@ -47,5 +57,14 @@ const Articles: NextPage = (props: { articleList?: Array<IArticle> }) => {
     </div>
   );
 };
+
+Articles.getLayout = function getLayout(page: ReactElement) {
+  return (
+    <Layout>
+      <Header />
+      { page }
+    </Layout>
+  )
+}
 
 export default Articles;

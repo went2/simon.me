@@ -1,7 +1,15 @@
-import { NextPage } from 'next';
+//types
+import type { NextPageWithLayout } from './_app';
+import type { ReactElement } from 'react';
+
+// styles
 import styles from '../styles/Home.module.scss';
 
-const Home: NextPage = () => {
+// components
+import Header from '../components/Header';
+import Layout from '../components/Layout';
+
+const Home: NextPageWithLayout = () => {
   return (
     <main className={styles.home}>
       <div className={styles.title}>
@@ -16,5 +24,14 @@ const Home: NextPage = () => {
     </main>
   );
 };
+
+Home.getLayout = function getLayout(page: ReactElement) {
+  return (
+    <Layout>
+      <Header />
+      { page }
+    </Layout>  
+  )
+}
 
 export default Home;

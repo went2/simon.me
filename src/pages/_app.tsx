@@ -1,11 +1,25 @@
-import '../styles/global.scss';
+// types
+import type { ReactElement, ReactNode } from 'react';
 import type { AppProps } from 'next/app';
+import type { NextPage } from 'next';
+
+// css
+import '../styles/global.scss';
+
+// components
 import { useState, useEffect } from 'react';
 import Head from 'next/head';
 import Script from 'next/script';
-import Layout from '../components/Layout';
 
-function App({ Component, pageProps }: AppProps) {
+export type NextPageWithLayout<P={}, IP=P> = NextPage<P, IP> & {
+  getLayout?: (page: ReactElement) => ReactNode
+}
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout
+}
+
+export default function App({ Component, pageProps }: AppPropsWithLayout) {
   const [title, setTitle] = useState('Open');
 
   useEffect(() => {
@@ -19,6 +33,8 @@ function App({ Component, pageProps }: AppProps) {
     });
   }, []);
 
+  const getLayout = Component.getLayout ?? ((page) => page);
+
   const siteTitle = `WestDoor ${title}`;
 
   return (
@@ -27,12 +43,10 @@ function App({ Component, pageProps }: AppProps) {
         <link rel="icon" type='image/x-icon' href='/favicon.ico' />
         <title>{siteTitle}</title>
       </Head>
-      <Layout>
-        <Script src="https://kit.fontawesome.com/db1b573488.js" crossOrigin="anonymous" />
-        <Component {...pageProps} />
-      </Layout>
+      <Script src="https://kit.fontawesome.com/db1b573488.js" crossOrigin="anonymous" />
+      {
+        getLayout(<Component {...pageProps} />)
+      }
     </>
   );
-}
-
-export default App;
+};
