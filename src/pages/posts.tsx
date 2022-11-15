@@ -66,23 +66,6 @@ const Posts: NextPageWithLayout = (props: { categoriedPosts?: { [key: string]: A
             );
           })
         }
-        {
-          <></>
-          // props.postList!.map(({ id, date, title, abstract, category }) => (
-          //   <article key={id} className={styles.post}>
-          //     <header>
-          //       <div className={styles.postDate}>
-          //         <Date dateString={date} />
-          //         <div>分类：{category}</div>
-          //       </div>
-          //       <Link href={`/post/${id}`} className={styles.postTitle}>
-          //         {title}
-          //       </Link>
-          //     </header>
-          //     <div className={styles.postAbstract}>{abstract}</div>
-          //   </article>
-          // ))
-        }
       </main>
     </div>
   );
