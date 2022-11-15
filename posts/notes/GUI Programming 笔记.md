@@ -1,6 +1,7 @@
 ---
 title: 'GUI Programming 笔记'
 date: '2022-01-20'
+year: '2022'
 abstract: '读书笔记之 GUI Programming'
 ---
 

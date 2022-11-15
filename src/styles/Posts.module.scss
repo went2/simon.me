@@ -43,8 +43,7 @@
         margin: 6px 0;
       }
 
-      .postItem {
-
+      .postItemTitle {
         font-size: 1.3rem;
         color: #333;
         font-weight: 400;
@@ -52,7 +51,7 @@
         flex: 0 1;
       }
 
-      .postItem:hover {
+      .postItemTitle:hover {
         background-color: var(--minion-yellow);
       }
     }

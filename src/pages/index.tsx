@@ -6,21 +6,63 @@ import type { ReactElement } from 'react';
 import styles from '../styles/Home.module.scss';
 
 // components
+import Link from 'next/link';
 import Header from '../components/Header';
 import Layout from '../components/Layout';
 
-const Home: NextPageWithLayout = () => {
+// utils
+import type { GetStaticProps } from 'next';
+import { getAllSortedPosts, TPost } from '../models/posts';
+
+// pre-rendering
+export const getStaticProps: GetStaticProps = () => {
+  const postList = getAllSortedPosts();
+
+  // [{year: '2021'}] to { '2021':[] }
+  const result: any = {};
+  for(const item of postList) {
+    if(!result[item.year]) {
+      result[item.year] = []
+    }
+    result[item.year].push(item);
+  }
+
+  console.log('result',result);
+  
+
+  return {
+    props: {
+      sortedPosts: result
+    }
+  }
+}
+
+const Home: NextPageWithLayout = (props: { sortedPosts?: { [key: string]: Array<TPost> } }) => {
+  const posts = props.sortedPosts!;
   return (
-    <main className={styles.home}>
-      <div className={styles.title}>
-        <p>WEST DOOR</p>
-      </div>
-      <div className={styles.quote}>
-        <div>耶稣在加利利海边行走的时候，看见兄弟二人，就是名叫彼得的<strong>西门</strong>和他的弟弟安得烈，正在把网撒到海里去；他们是渔夫。耶稣就对他们说：“来跟从我，我要使你们作得人的渔夫。”他们立刻撇下网，跟从了他。</div>
-        <div className={styles.source}>
-          <p>马太福音：4:18-20</p>
-        </div>
-      </div>
+    <main className={styles.container}>
+      {
+        Object.keys(posts).reverse().map(year =>(
+          <section key={year} className={styles.section}>
+            <div className={styles.sectionTitle}>{ year }</div>
+            <div className={styles.sectionList}>
+              {
+                posts[year].map(post => (
+                  <div key={post.id} className={styles.postItem}>
+                    <h3>
+                      <Link href={`/post/${post.id}`} className={styles.postItemTitle}>
+                        {post.title}
+                      </Link>
+                      <span>{post.date}</span>
+                    </h3>
+                    <p>{post.abstract}</p>
+                  </div>
+                ))
+              }
+            </div>
+          </section>
+        ))
+      }
     </main>
   );
 };

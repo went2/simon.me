@@ -1,6 +1,7 @@
 ---
 title: 'JavaScript 如何通过原型创建对象及实现继承'
 date: '2022-02-28'
+year: '2022'
 abstract: '如题'
 ---
 

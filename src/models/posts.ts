@@ -16,6 +16,7 @@ export type TPost = {
   title: string;
   abstract: string;
   date: string;
+  year: string;
   category: string;
   htmlContent?: string
 }

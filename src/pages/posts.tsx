@@ -8,7 +8,7 @@ import styles from '../styles/Posts.module.scss';
 // api&utils
 import { GetStaticProps } from 'next';
 import { getAllSortedPosts, TPost } from '../models/posts';
-import Date from '../components/Date';
+
 
 // components
 import Link from 'next/link';
@@ -56,7 +56,7 @@ const Articles: NextPageWithLayout = (props: { categoriedPosts?: { [key: string]
                   {
                     posts[category].map(post => (
                       <h3 key={post.id}>
-                        <Link href={`/post/${post.id}`} className={styles.postItem}>
+                        <Link href={`/post/${post.id}`} className={styles.postItemTitle}>
                           {post.title}
                         </Link>
                       </h3>
