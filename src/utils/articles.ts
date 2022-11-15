@@ -8,9 +8,9 @@ import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
 
-const articleDir = path.join(process.cwd(), 'articles');
+const articleDir = path.join(process.cwd(), 'posts');
 
-export interface IArticle {
+export type IArticle = {
   id: string;
   title: string;
   abstract: string;
@@ -20,6 +20,7 @@ export interface IArticle {
 
 export function getSortedArticleList() {
   const fileNames = fs.readdirSync(articleDir);
+
   const articleData = fileNames.map((fileName) => {
     const id = fileName.replace(/\.md$/, '');
 

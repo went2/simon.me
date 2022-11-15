@@ -8,6 +8,7 @@ import styles from '../styles/Articles.module.scss';
 // api&utils
 import { GetStaticProps } from 'next';
 import { getSortedArticleList, IArticle } from '../utils/articles';
+import { getAllSortedPosts, TPost } from '../models/posts';
 import Date from '../components/Date';
 
 // components
@@ -17,8 +18,9 @@ import Layout from '../components/Layout';
 
 // pre-rendering
 export const getStaticProps: GetStaticProps = async (context) => {
-  const articleList = getSortedArticleList();
-
+  const articleList = getAllSortedPosts();
+  // console.log('posts in view', articleList);
+  
   return {
     props: {
       articleList
@@ -26,7 +28,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 };
 
-const Articles: NextPageWithLayout = (props: { articleList?: Array<IArticle> }) => {
+const Articles: NextPageWithLayout = (props: { articleList?: Array<TPost> }) => {
   return (
     <div className={styles.articleWrapper}>
       <aside className={styles.sideBar}>
@@ -39,11 +41,12 @@ const Articles: NextPageWithLayout = (props: { articleList?: Array<IArticle> }) 
       </aside>
       <main className={styles.articleList}>
         {
-          props.articleList!.map(({ id, date, title, abstract }) => (
+          props.articleList!.map(({ id, date, title, abstract, category }) => (
             <article key={id} className={styles.article}>
               <header>
                 <div className={styles.articleDate}>
                   <Date dateString={date} />
+                  <div>分类：{category}</div>
                 </div>
                 <Link href={`/articles/${id}`} className={styles.articleTitle}>
                   {title}

@@ -1,7 +1,7 @@
 import { NextPage } from "next";
 import styles from './Header.module.scss';
 import Link from 'next/link';
-import { navList } from '../../model/navbar';
+import { navList } from '../../models/navbar';
 import throttle from "../../utils/throttle";
 
 const Header: NextPage = () => {

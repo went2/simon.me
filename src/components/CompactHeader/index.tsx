@@ -7,7 +7,7 @@ import styles from './CompactHeader.module.scss';
 // components
 import Link from 'next/link';
 
-import { navList } from '../../model/navbar';
+import { navList } from '../../models/navbar';
 import throttle from "../../utils/throttle";
 
 const CompactHeader: NextPage = () => {
