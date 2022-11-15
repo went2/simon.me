@@ -20,6 +20,13 @@ export type TPost = {
   htmlContent?: string
 }
 
+export const categoryI18n: any =  {
+  essays: '随笔',
+  notes: '笔记',
+  references: '参考',
+  translations: '翻译'
+}
+
 /**
  * 从本地/posts 文件夹中获取所有.md文件，组成数组
  * 约定: /posts 文件下只有一层文件夹
@@ -80,6 +87,5 @@ function getFilesFromLocal(entry: string): Array<{
 
   _readDir(entry);
 
-  console.log('model result', result);
   return result;
 }

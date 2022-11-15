@@ -26,6 +26,10 @@ h2 {
   font-weight: 700;
 }
 
+h3 {
+  margin: 0;
+}
+
 a {
   text-decoration: none;
 }
@@ -71,8 +75,8 @@ li code, p code {
   --text-link: #0069c2;
   --text-inactive: rgba(158, 158, 158, 0.6);
 
-  --article-title-size: 24px;
-  --article-title-color: #112c22;
+  --post-title-size: 24px;
+  --post-title-color: #112c22;
 
   // common size
   --container-max-width: 720px;
