@@ -1,11 +1,21 @@
-import { NextPage, GetStaticPaths, GetStaticProps } from "next";
-import { getArticleIds, getArticleDetail, IArticle } from '../../utils/articles';
+//types
+import type { NextPageWithLayout } from '../_app';
+import { ReactElement } from 'react';
+// styles
+import styles from '../../styles/PostDetail.module.scss';
+
+import { GetStaticPaths, GetStaticProps } from "next";
+import { getPostIds, getPostInfoById, TPost } from '../../models/posts';
+
+// components
+import Header from '../../components/CompactHeader';
+import Layout from '../../components/Layout';
 import Date from '../../components/Date';
-import styles from '../../styles/ArticleDetail.module.scss';
+import { StyleRegistry } from 'styled-jsx';
 
 // return a list of possible value for id
 export const getStaticPaths: GetStaticPaths = async () => {
-  const paths = getArticleIds();
+  const paths = getPostIds();
   return {
     paths,
     fallback: false
@@ -13,7 +23,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const detail = await getArticleDetail(params!.id as string);
+  const detail = await getPostInfoById(params!.id as string);
   return {
     props: {
       detail
@@ -22,12 +32,12 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 }
 
 
-const Article: NextPage = (props: { detail?: IArticle }) => {
-  const detail = props.detail as IArticle;
+const Post: NextPageWithLayout = (props: { detail?: TPost }) => {
+  const detail = props.detail as TPost;
 
   return (
     <main className={styles.container}>
-      {/* <Date dateString={detail.date} /> */}
+      <div className={styles.date}>{detail.date}</div>
 
       <div
         dangerouslySetInnerHTML={{ __html: detail.htmlContent as string }}
@@ -36,4 +46,13 @@ const Article: NextPage = (props: { detail?: IArticle }) => {
   );
 };
 
-export default Article;
+Post.getLayout = function getLayout(page: ReactElement) {
+  return (
+    <Layout>
+      <Header />
+      { page }
+    </Layout>
+  )
+}
+
+export default Post;

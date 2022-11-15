@@ -39,28 +39,21 @@ ul {
   margin: 0;
 }
 
-li {
+ul > li {
   list-style-type: none;
 }
 
 p {
-  line-height: 1.75;
+  line-height: 1.6;
   margin: 15px 0 0 0;
 }
 
 pre {
   border: 1px dashed #ddd;
   border-radius: 4px;
-  background: #eee;
+  background: #fafafa;
   padding: 1em;
-}
-
-li code, p code {
-  background-color: rgba(27, 31, 35, .05);
-  border-radius: 4px;
-  margin: 0;
-  padding: .2em .2em;
-  border: 1px solid #ddd;
+  font-size: .9rem;
 }
 
 :root {

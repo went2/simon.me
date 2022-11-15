@@ -55,7 +55,7 @@ export function getArticleIds() {
         id: fileName.replace(/\.md$/, '')
       }
     }
-  })
+  });
 }
 
 export async function getArticleDetail(id: string) {

@@ -9,7 +9,6 @@ import styles from '../styles/Posts.module.scss';
 import { GetStaticProps } from 'next';
 import { getAllSortedPosts, TPost } from '../models/posts';
 
-
 // components
 import Link from 'next/link';
 import Header from '../components/CompactHeader';
@@ -42,7 +41,7 @@ const categoryI18n: any =  {
   translations: '翻译'
 }
 
-const Articles: NextPageWithLayout = (props: { categoriedPosts?: { [key: string]: Array<TPost> } }) => {
+const Posts: NextPageWithLayout = (props: { categoriedPosts?: { [key: string]: Array<TPost> } }) => {
   const posts =  props.categoriedPosts!;
   return (
     <div className={styles.container}>
@@ -89,7 +88,7 @@ const Articles: NextPageWithLayout = (props: { categoriedPosts?: { [key: string]
   );
 };
 
-Articles.getLayout = function getLayout(page: ReactElement) {
+Posts.getLayout = function getLayout(page: ReactElement) {
   return (
     <Layout>
       <Header />
@@ -98,4 +97,4 @@ Articles.getLayout = function getLayout(page: ReactElement) {
   )
 }
 
-export default Articles;
+export default Posts;

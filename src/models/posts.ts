@@ -1,5 +1,5 @@
 /**
- * model/store of posts
+ * model/store of posts，相当于服务端
  * view 从这里获取文章数据，这里的数据(暂时)来源于本地文件
  */
 
@@ -9,8 +9,6 @@ import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
 
-const postDir = path.join(process.cwd(), 'posts');
-
 export type TPost = {
   id: string;
   title: string;
@@ -18,15 +16,18 @@ export type TPost = {
   date: string;
   year: string;
   category: string;
-  htmlContent?: string
+  htmlContent?: string;
 }
 
-export const categoryI18n: any =  {
-  essays: '随笔',
-  notes: '笔记',
-  references: '参考',
-  translations: '翻译'
+export type TPostFileData = {
+  title: string;
+  path: string;
+  category?: string;
 }
+
+// 获取所有posts信息并缓存
+const postDir = path.join(process.cwd(), 'posts');
+const allPostFiles: TPostFileData[] = getFilesFromLocal(postDir);
 
 /**
  * 从本地/posts 文件夹中获取所有.md文件，组成数组
@@ -34,9 +35,7 @@ export const categoryI18n: any =  {
  */
 export function getAllSortedPosts(): TPost[] {
 
-  const filePaths = getFilesFromLocal(postDir);
-  const articleData = filePaths.map((fileInfo) => {
-
+  const postList = allPostFiles.map(fileInfo => {
     const fileContent = fs.readFileSync(fileInfo.path, 'utf8');
     const matterResult = matter(fileContent);
 
@@ -48,7 +47,7 @@ export function getAllSortedPosts(): TPost[] {
   });
 
     // sort articles by date
-  return articleData.sort(({ date: a }, { date: b }) => {
+  return postList.sort(({ date: a }, { date: b }) => {
     if (a < b) {
       return 1;
     } else if (a > b) {
@@ -59,12 +58,28 @@ export function getAllSortedPosts(): TPost[] {
   });
 }
 
+export async function getPostInfoById(id: string) {
+  const filePath = allPostFiles.find(item => item.title === id)!.path;
+  
+  const fileContent = fs.readFileSync(filePath, 'utf8');
+
+  const matterResult = matter(fileContent);
+
+  const processedContent = await remark()
+    .use(html)
+    .process(matterResult.content)
+  
+  const htmlContent = processedContent.toString();
+
+  return {
+    id,
+    htmlContent,
+    ...matterResult.data
+  } as TPost
+}
+
 // util functions
-function getFilesFromLocal(entry: string): Array<{ 
-  title: string,
-  path: string,
-  category?: string
- }> {
+function getFilesFromLocal(entry: string): TPostFileData[] {
   const result: any = [];
 
   // 遍历文件夹. entry: 绝对路径
@@ -78,8 +93,8 @@ function getFilesFromLocal(entry: string): Array<{
         _readDir(location, fileName);
       } else {
         result.push({
-          category, 
-          title: fileName,
+          category,
+          title: fileName.replace(/\.md$/, ''),
           path: location
         });
       }
@@ -89,4 +104,16 @@ function getFilesFromLocal(entry: string): Array<{
   _readDir(entry);
 
   return result;
+}
+
+export function getPostIds() {
+  console.log('getPostIds====, allPostFiles', allPostFiles);
+  
+  return allPostFiles.map(postFile => {
+    return {
+      params: {
+        id: postFile.title
+      }
+    }
+  });
 }

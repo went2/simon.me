@@ -27,9 +27,8 @@ export const getStaticProps: GetStaticProps = () => {
     result[item.year].push(item);
   }
 
-  console.log('result',result);
+  // console.log('result------', result);
   
-
   return {
     props: {
       sortedPosts: result
