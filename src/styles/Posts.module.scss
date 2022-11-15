@@ -2,7 +2,7 @@
   max-width: 720px;
   display: flex;
   margin: 0 auto;
-  padding: 1rem 0;
+  padding: 1rem 1.5rem;
 }
 
 // .side-bar {
@@ -31,7 +31,7 @@
   .section {
     margin-top: 30px;
     .sectionTitle {
-      margin: 10px 0;
+      margin: 12px 0;
       color: #000;
       font-size: 24px;
       font-weight: 700;
@@ -44,6 +44,8 @@
       }
 
       .postItemTitle {
+        display: inline-block;
+        margin-top: 5px;
         font-size: 1.3rem;
         color: #333;
         font-weight: 400;

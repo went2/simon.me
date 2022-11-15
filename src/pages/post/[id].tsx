@@ -10,8 +10,6 @@ import { getPostIds, getPostInfoById, TPost } from '../../models/posts';
 // components
 import Header from '../../components/CompactHeader';
 import Layout from '../../components/Layout';
-import Date from '../../components/Date';
-import { StyleRegistry } from 'styled-jsx';
 
 // return a list of possible value for id
 export const getStaticPaths: GetStaticPaths = async () => {

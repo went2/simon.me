@@ -40,12 +40,15 @@ obj1.push('33')
 3. 调用 Array 构造函数并将该函数的 `this` 设为 obj1
 
 `new` 操作符的核心的步骤就是把新对象的 `__proto__` 属性设为构造函数的 prototype 属性，从而创建出类似该对象（如Array）的一个新对象。对象的 `__proto__` 属性决定了它属于哪类对象。
+
 ```js
 var obj = {}
-console.log(obj.__proto__ === Object.prototype) // obj 是一个 Object 对象
+// obj 是一个 Object 对象
+console.log(obj.__proto__ === Object.prototype) 
 
 var fn = function(){}
-console.log(fn.__proto__ === Function.prototype) // fn 是一个 Function 对象
+// fn 是一个 Function 对象
+console.log(fn.__proto__ === Function.prototype) 
 ```
 
 **实现一个类似 Object.create() 方法**

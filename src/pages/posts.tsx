@@ -50,7 +50,7 @@ const Posts: NextPageWithLayout = (props: { categoriedPosts?: { [key: string]: A
           Object.keys(posts).map(category => {
             return (
               <section key={category} className={styles.section}>
-                <div className={styles.sectionTitle}># { categoryI18n[category] }</div>
+                <div className={styles.sectionTitle}>{ categoryI18n[category] }</div>
                 <div className={styles.sectionList}>
                   {
                     posts[category].map(post => (
