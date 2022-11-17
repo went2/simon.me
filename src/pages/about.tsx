@@ -1,12 +1,20 @@
-import { NextPage } from 'next';
+// types
+import type { NextPageWithLayout } from './_app';
+import type { ReactElement } from 'react';
+
+// styles
+import styles from '../styles/About.module.scss';
+
+// components
 import Image from 'next/image';
-import styles from '../styles/Cv.module.scss';
 import CollapseContent from '../components/CollapseContent';
 import JobTitle from '../components/CvContent/JobTitle';
 import CompanyName from '../components/CvContent/CompanyName';
 import WorkingYear from '../components/CvContent/WorkingYear';
+import Header from '../components/CompactHeader';
+import Layout from '../components/Layout';
 
-const About: NextPage = () => {
+const About: NextPageWithLayout = () => {
   return (
     <main className={styles.cv}>
       <div className={styles.info}>
@@ -221,5 +229,14 @@ const About: NextPage = () => {
     </main >
   );
 };
+
+About.getLayout = function getLayout(page: ReactElement) {
+  return (
+    <Layout>
+      <Header />
+      { page }
+    </Layout>
+  );
+}
 
 export default About;
