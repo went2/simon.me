@@ -5,9 +5,19 @@ import type { ReactElement } from 'react';
 // styles
 import styles from '../styles/Projects.module.scss';
 
+// utils
+import { GetStaticProps } from 'next';
+
 // components
 import Header from '../components/CompactHeader';
 import Layout from '../components/Layout';
+
+export const getStaticProps: GetStaticProps = async() => {
+  
+  return {
+    props: {}
+  }
+}
 
 const Projects: NextPageWithLayout = () => {
   return (

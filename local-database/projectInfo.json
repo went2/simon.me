@@ -1,0 +1,39 @@
+{
+  "npm": [
+    {
+      "name": "miniprogram-navbar",
+      "icon": "fa fa-home",
+      "desc": "A navigation bar component used in Wechat miniprogram.",
+      "url": ""
+    }
+  ],
+  "mobile platform": [
+    {
+      "name": "YT Music",
+      "icon": "fa fa-home",
+      "desc": "A ",
+      "url": "A music player mini-program imitated YouTube Music's interface, but with light mode."
+    },
+    {
+      "name": "On The Road",
+      "icon": "fa fa-home",
+      "desc": "A Bed & Breakfast mobile web app built with vue3 and pinia.",
+      "url": ""
+    }
+  ],
+  "html&css": [
+    {
+      "name": "Forkify",
+      "icon": "fa fa-home",
+      "desc": "A recipe web app",
+      "url": ""
+    },
+    {
+      "name": "forkify",
+      "icon": "fa fa-home",
+      "desc": "A recipe web app",
+      "url": ""
+    }
+
+  ]
+}
