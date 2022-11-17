@@ -7,22 +7,45 @@ import styles from '../styles/Projects.module.scss';
 
 // utils
 import { GetStaticProps } from 'next';
+import { getProjectsInfo, IProjectInfo } from '../models/projects';
 
 // components
 import Header from '../components/CompactHeader';
 import Layout from '../components/Layout';
 
 export const getStaticProps: GetStaticProps = async() => {
-  
+  const projectsInfo = await getProjectsInfo();
+
   return {
-    props: {}
+    props: {
+      projectsInfo
+    }
   }
 }
 
-const Projects: NextPageWithLayout = () => {
+const Projects: NextPageWithLayout = (props: { projectsInfo?: { [key: string]: IProjectInfo[] } }) => {
+  const info = props.projectsInfo!;
+
   return (
-    <main className={styles.container }>
-      项目页面
+    <main className={styles.container}>
+      {
+        Object.keys(info).map(projectCategory => (
+          <section key={projectCategory} className={styles.section}>
+            <h2>{ projectCategory }</h2>
+
+            <div className={styles.inner}>
+              {
+                info[projectCategory].map(proj => (
+                  <div key={proj.name} className={styles.item}>
+
+                  </div>
+                ))
+              }
+            </div>
+          </section>
+        ))
+        
+      }
     </main>
   )
 };

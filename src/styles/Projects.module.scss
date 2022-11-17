@@ -2,4 +2,13 @@
   max-width: 720px;
   margin: 0 auto;
   padding: 1rem 1.5rem;
+
+  .section {
+
+
+    .inner {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
 }
