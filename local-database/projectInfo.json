@@ -1,7 +1,7 @@
 {
   "components": [
     {
-      "name": "miniprogram-navbar",
+      "name": "Miniprogram-navbar",
       "icon": "fa fa-home",
       "desc": "A navigation bar component used in Wechat miniprogram.",
       "url": ""
@@ -11,8 +11,8 @@
     {
       "name": "YT Music",
       "icon": "fa fa-home",
-      "desc": "A ",
-      "url": "A music player mini-program imitated YouTube Music's interface, but with light mode."
+      "desc": "A music player mini-program imitated YouTube Music's interface, but with light mode.",
+      "url": ""
     },
     {
       "name": "On The Road",

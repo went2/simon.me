@@ -3,8 +3,8 @@
   margin: 1rem auto;
   color: #343a40;
   padding: 1.5rem 2rem;
-  font-size: 17px;
-  box-shadow: 0 8px 26px rgb(0 0 0 / 32%);
+  font-size: 1.1rem;
+  box-shadow: 0 8px 20px rgb(0 0 0 / 20%);
   border-radius: 7px;
   // background-color: #fafafa;
 
@@ -17,9 +17,11 @@
   // define styles for text converted from markdown,could only use element selector right now
   h1, h2, h3 {
     color: #343a40;
+    line-height: 1.5rem;
   }
   h2 {
-    margin-top: 35px;
+    font-size: 1.3rem;
+    margin: 35px 0 16px 0;
   }
   h3 {
     margin-top: 30px;

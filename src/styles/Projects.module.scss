@@ -4,11 +4,52 @@
   padding: 1rem 1.5rem;
 
   .section {
-
+    h2 {
+      color: #343a40;
+      border-left: .3rem solid #343a40;
+      margin: 35px 0 16px 0;
+      padding-left: .8rem;
+    }
 
     .inner {
       display: flex;
       flex-wrap: wrap;
+      justify-content: space-around;
+
+      .item {
+        margin: 5px 0;
+        padding: 12px;
+        border-radius: 5px;
+        display: flex;
+        align-items: flex-start;
+        transition: all .2s ease;
+
+        width: 300px;
+
+        .left {
+          flex-shrink: 0;
+          width: 66px;
+          height: 66px;
+          background-color: antiquewhite;
+          text-align: center;
+          line-height: 66px;
+        }
+        .right {
+          padding-left: 1rem;
+          .title {
+            font-size: 1.2rem;
+          }
+          .desc {
+            padding-top: 10px;
+            color: #545454;
+          }
+        }
+      }
+
+      .item:hover {
+        box-shadow: 0 5px 20px rgb(0 0 0 / 22%);
+        transform: scale(1.1);
+      }
     }
   }
 }
