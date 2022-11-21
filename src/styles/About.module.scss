@@ -104,10 +104,6 @@
 
       li {
         margin: 6px 0;
-
-        a:hover {
-          border-bottom: 1px dashed var(--text-link);
-        }
       }
 
       li::before {
@@ -129,4 +125,16 @@
   border-bottom: none;
   margin-bottom: 0;
   padding-bottom: 0;
+}
+
+@media (any-hover: hover) {
+  .exp-des-edu {
+    ul {
+      li {
+        a:hover {
+          border-bottom: 1px dashed var(--text-link);
+        }
+      }
+    }
+  }
 }

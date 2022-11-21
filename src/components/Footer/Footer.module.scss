@@ -3,12 +3,17 @@
   margin: 50px auto 10px auto;
   border-top: 1px solid #efefef;
   padding: 0 15px;
-
   color: var(--text-secondary);
+  
   a {
     color: var(--text-secondary);
   }
-  a:hover {
-    background-color: var(--minion-yellow);
+}
+
+@media (any-hover: hover) {
+  .container {
+    a:hover {
+      background-color: var(--minion-yellow);
+    }
   }
 }

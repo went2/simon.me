@@ -52,10 +52,6 @@
         letter-spacing: 1px;
         flex: 0 1;
       }
-
-      .postItemTitle:hover {
-        background-color: var(--minion-yellow);
-      }
     }
 
   }
@@ -64,4 +60,16 @@
     // box-shadow: 0 5px 40px rgb(0 0 0 / 4%);
   }
 
+}
+
+@media (any-hover: hover) {
+  .list {
+    .section {
+      .sectionList {
+        .postItemTitle:hover {
+          background-color: var(--minion-yellow);
+        }
+      }
+    }
+  }
 }

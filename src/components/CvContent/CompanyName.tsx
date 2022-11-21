@@ -14,8 +14,11 @@ const CompanyName = ({ children }: Props) => {
           color: var(--text-secondary);
           padding: 2px 0;
         }
-        span:hover {
-          border-bottom: 1px dashed #bbb;
+
+        @media (any-hover: hover) {
+          span:hover {
+            border-bottom: 1px dashed #bbb;
+          }
         }
         
         `}

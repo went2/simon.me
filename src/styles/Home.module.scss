@@ -47,9 +47,13 @@
 
     }
   }
+}
 
-  .section:hover {
-    box-shadow: 0 5px 40px rgb(0 0 0 / 5%);
+@media (any-hover: hover) {
+  .container {
+    .section:hover {
+      box-shadow: 0 5px 40px rgb(0 0 0 / 5%);
+    }
   }
 }
 

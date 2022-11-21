@@ -43,10 +43,6 @@
               padding: 2px 5px 3px 3px;
               border-radius: 2px;
             }
-  
-            a:hover {
-              background-color: #f0db4f;
-            }
           }
         }
       }
@@ -62,6 +58,24 @@
       letter-spacing: 1px;
     }
 
+  }
+}
+
+@media (any-hover: hover) {
+  .header {
+    &-nav {
+      .navTop {
+        .navLinks {
+          ul {
+            li {
+              a:hover {
+                background-color: #f0db4f;
+              }
+            }
+          }
+        }
+      }
+    }
   }
 }
 

@@ -7,7 +7,7 @@
       "url": ""
     }
   ],
-  "mobile platform": [
+  "mobile H5 application": [
     {
       "name": "YT Music",
       "icon": "fa fa-home",
@@ -21,7 +21,7 @@
       "url": ""
     }
   ],
-  "html&css": [
+  "desktop": [
     {
       "name": "Forkify",
       "icon": "fa fa-home",
@@ -34,6 +34,5 @@
       "desc": "A recipe web app",
       "url": ""
     }
-
   ]
 }
