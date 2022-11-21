@@ -12,6 +12,7 @@ import { getProjectsInfo, IProjectInfo } from '../models/projects';
 // components
 import Header from '../components/CompactHeader';
 import Layout from '../components/Layout';
+import Link from 'next/link';
 
 export const getStaticProps: GetStaticProps = async() => {
   const projectsInfo = await getProjectsInfo();
@@ -31,15 +32,21 @@ const Projects: NextPageWithLayout = (props: { projectsInfo?: { [key: string]: I
       {
         Object.keys(info).map(projectCategory => (
           <section key={projectCategory} className={styles.section}>
-            <h2>{ projectCategory }</h2>
+            <h2>{ projectCategory.replace(/^\S/, s => s.toUpperCase()) }</h2>
 
             <div className={styles.inner}>
               {
                 info[projectCategory].map(proj => (
                   <div key={proj.name} className={styles.item}>
-                    <div className={styles.left}>icon</div>
+                    <Link href={proj.url} target="_blank">
+                      <i className={`${proj.icon}`} />
+                    </Link>
                     <div className={styles.right}>
-                      <div className={styles.title}>{proj.name}</div>
+                      <div className={styles.title}>
+                        <Link href={proj.url} target="_blank">
+                          {proj.name}
+                        </Link>
+                      </div>
                       <div className={styles.desc}>{proj.desc}</div>
                     </div>
                   </div>

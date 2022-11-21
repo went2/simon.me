@@ -1,22 +1,14 @@
 {
-  "components": [
-    {
-      "name": "Miniprogram-navbar",
-      "icon": "fa fa-home",
-      "desc": "A navigation bar component used in Wechat miniprogram.",
-      "url": ""
-    }
-  ],
   "mobile H5 application": [
     {
       "name": "YT Music",
-      "icon": "fa fa-home",
+      "icon": "fa fa-music",
       "desc": "A music player mini-program imitated YouTube Music's interface, but with light mode.",
       "url": ""
     },
     {
       "name": "On The Road",
-      "icon": "fa fa-home",
+      "icon": "fa fa-bed",
       "desc": "A Bed & Breakfast mobile web app built with vue3 and pinia.",
       "url": ""
     }
@@ -24,7 +16,7 @@
   "desktop": [
     {
       "name": "Forkify",
-      "icon": "fa fa-home",
+      "icon": "fa fa-shopping-basket ",
       "desc": "A recipe web app",
       "url": ""
     },
@@ -33,6 +25,22 @@
       "icon": "fa fa-home",
       "desc": "A recipe web app",
       "url": ""
+    }
+  ],
+  "components": [
+    {
+      "name": "Miniprogram-navbar",
+      "icon": "fa fa-bars",
+      "desc": "A common navigation bar component used in Wechat miniprogram.",
+      "url": "https://github.com/went2/sf-mini-navbar"
+    }
+  ],
+  "chrome extensions": [
+    {
+      "name": "Leave me unlogged",
+      "icon": "fa fa-universal-access",
+      "desc": "A extension that automatically closes login pop-ups.",
+      "url": "https://github.com/went2/leave-me-unlogged"
     }
   ]
 }

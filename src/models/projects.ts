@@ -1,5 +1,4 @@
 import projectsInfo from '../../local-database/projectInfo.json';
-// const projectsInfo = require('../../local-database/projectInfo.json');
 
 export interface IProjectInfo {
   icon?: string;

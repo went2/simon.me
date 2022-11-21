@@ -23,16 +23,20 @@
         display: flex;
         align-items: flex-start;
         transition: all .2s ease;
-
         width: 340px;
 
-        .left {
-          flex-shrink: 0;
+        cursor: default;
+
+        i {
+          font-size: 40px;
+          color: rgb(0 0 0 /22%);
           width: 66px;
           height: 66px;
-          background-color: antiquewhite;
+          flex-shrink: 0;
+          border: 1px dashed rgb(0 0 0 /22%);
           text-align: center;
           line-height: 66px;
+          transition: all .5s ease;
         }
         .right {
           padding-left: 1rem;
@@ -40,7 +44,6 @@
             font-size: 1.2rem;
           }
           .desc {
-            padding-top: 10px;
             color: #545454;
           }
         }
@@ -56,7 +59,17 @@
         .item:hover {
           box-shadow: 0 5px 20px rgb(0 0 0 / 22%);
           transform: scale(1.05);
+          i {
+            color: var(--minion-yellow);
+            border: 1px dashed var(--minion-yellow);
+          }
+          .right {
+            .title {
+              font-weight: 500;
+            }
+          }
         }
+
       }
     }
   }
