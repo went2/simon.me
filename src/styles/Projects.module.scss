@@ -1,7 +1,7 @@
 .container {
   max-width: 720px;
   margin: 0 auto;
-  padding: 1rem 1.5rem;
+  padding: 1rem;
 
   .section {
     h2 {
@@ -14,7 +14,7 @@
     .inner {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-around;
+      justify-content: space-between;
 
       .item {
         margin: 5px 0;
@@ -24,7 +24,7 @@
         align-items: flex-start;
         transition: all .2s ease;
 
-        width: 300px;
+        width: 340px;
 
         .left {
           flex-shrink: 0;
@@ -55,7 +55,7 @@
       .inner {
         .item:hover {
           box-shadow: 0 5px 20px rgb(0 0 0 / 22%);
-          transform: scale(1.1);
+          transform: scale(1.05);
         }
       }
     }
