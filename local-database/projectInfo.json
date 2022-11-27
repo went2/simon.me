@@ -3,28 +3,28 @@
     {
       "name": "YT Music",
       "icon": "fa fa-music",
-      "desc": "A music player mini-program imitated YouTube Music's interface, but with light mode.",
-      "url": ""
+      "desc": "A music player mini-program demo imitated YouTube Music's interface, but with light mode.",
+      "url": "https://github.com/went2/yt-music"
     },
     {
       "name": "On The Road",
       "icon": "fa fa-bed",
-      "desc": "A Bed & Breakfast mobile web app built with vue3 and pinia.",
-      "url": ""
+      "desc": "A Bed & Breakfast mobile web app demo built with vue3 and pinia.",
+      "url": "https://github.com/went2/trip-app"
     }
   ],
   "desktop": [
     {
-      "name": "Forkify",
+      "name": "Cookit",
       "icon": "fa fa-shopping-basket ",
-      "desc": "A recipe web app",
-      "url": ""
+      "desc": "A vanilla JS recipe searching application using MVC",
+      "url": "https://github.com/went2/cookit"
     },
     {
-      "name": "forkify",
-      "icon": "fa fa-home",
-      "desc": "A recipe web app",
-      "url": ""
+      "name": "Greedy snake",
+      "icon": "fa fa-circle-o-notch",
+      "desc": "a greedy snake game with vanilla js and dom api",
+      "url": "https://github.com/went2/greedy-snake"
     }
   ],
   "components": [
