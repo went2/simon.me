@@ -7,7 +7,7 @@ abstract: '用一个简单的查菜谱项目例解 MVC 结构的实践'
 
 # 一个网页项目的 MVC 实践
 
-## MVC 是什么
+## 1.MVC 是什么
 
 据[维基百科](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller)，mvc 三者的发挥的作用分别是：
 
@@ -35,9 +35,9 @@ abstract: '用一个简单的查菜谱项目例解 MVC 结构的实践'
 
 本项目是一个查询菜谱的demo，实现了 “查询-> 显示可分页的列表 -> 点击列表显示详情” 基本功能，数据来自于网络api。MVC 三层都用 js 实现，写的时候大致把握一个原则是每一层不需要知道其他两层的具体细节，只调用它们对外暴露的方法，具体来说：
 
-## 本项目的 MVC 实践
+## 2.本项目的 MVC 实践
 
-### 1. Model：`/src/js/model/index.js`
+### 2.1 Model：`/src/js/model/index.js`
 
 model 中有两个主要结构：state 和操作 state 的方法。这里用对象实现state，用函数实现方法。
 
@@ -108,7 +108,7 @@ const useCityStore = defineStore('city', {
 export default useCityStore;
 ```
 
-### 2. Controller：`/src/js/controller.js`
+### 2.2 Controller：`/src/js/controller.js`
 
 实现两个功能：
   1. 处理页面交互，即用户点击按钮，要发生什么。绝大部分是事件处理函数，函数逻辑是：接收页面的输入 => 修改 model 中数据 => 通知相关 view 用最新的数据进行渲染；
@@ -149,7 +149,7 @@ export default function init () {
 }
 ```
 
-### 3. View：`/src/js/views/` 目录下的文件
+### 2.3 View：`/src/js/views/` 目录下的文件
 
 view 层主要考虑两个问题：
   1. 如何生成可以绑定动态数据的模板，本项目用模板字符串实现；
@@ -192,17 +192,22 @@ export default new SearchView();
 
 view 获取模板中的dom，向 controller 暴露操作 dom 的方法，其实叫它 ViewModel 更合适。
 
-### 4. controller 和 view 如何通信——Observer 模式
+### 2.4 controller 和 view 如何通信——Observer 模式
 
 [Observer 模式](https://en.wikipedia.org/wiki/Observer_pattern) 又叫发布/订阅模式，常用于处理事件驱动软件中处理随机发生的事件（HTTP requests, user input, distributed databases 等）。
 
-观察者模式中，一个叫**subject**对象，维护一份它的依赖的列表，这些依赖叫**observers**，当subject 的状态发生改变时，会自动通知这些 observers，通知的方式通常是调用 observers 的方法。
+观察者模式中，有两种角色，一种叫**subject**，会维护一份依赖列表，这些依赖叫**observers**，当subject 的状态发生改变时，会自动通知这些 observers，通知的方式通常是调用 observers 传入的方法。
 
-在“事件驱动”式软件中，subject 又叫事件流（stream of events）或事件流源（stream source of events），observers 叫“sinks of events”（中文叫什么？）。大致理解就是，哪里产生事件，那里就是subject。
+以下词汇当作同义词使用：
 
-在用mvc结构写浏览器中的界面时，哪部分扮演 subject？那部分扮演 observers？
+1. subject：被观察者、发布者；
+2. observer：观察者、订阅者；
 
-从事件发生处当作 subject 这个规律可知，view 应该作为 subject，因为用户的交互事件只有在 view 中监听到。
+在“事件驱动”式软件中，subject 又叫事件流（stream of events）或事件流源（stream source of events），observers 叫“sinks of events”。大致理解就是，哪里产生事件，哪里就是subject。
+
+在 controller 和 view 的通信中，哪部分扮演 subject？那部分扮演 observers？
+
+从事件发生处当作 subject 可知，view 应该作为发布者，controller 是订阅者，因为用户的交互事件只有在 view 中监听到。
 
 举例：实现搜索功能，获取用户输入，请求api服务器，获取结果后，渲染结果列表
 
@@ -247,6 +252,7 @@ export default function init () {
 }
 ```
 
-controller 中 `init ()` 方法中的 `searchView.addEventHandler(searchListController)` 就是在给作为 subject 的 searchView 添加观察者 `searchListController`;
+两者通信的方式小结：
 
-searchView 的 `addEventHandler` 内部实现的作用是当某个事件（'submit'）发生时，通知传入的observer（即调用传入的方法）。
+- view 收集依赖，或叫订阅者订阅消息处理函数，具体方式是订阅者对象对外暴露一个**可传入回调**的方法，由外界调用并传入回调，传入回调的过程就是收集依赖；
+- view 中发生事件时，调用传入的回调，通知订阅者。
