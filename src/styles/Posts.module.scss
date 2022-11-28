@@ -45,6 +45,7 @@
 
       .postItemTitle {
         display: inline-block;
+        border-bottom: 2px dashed var(--minion-yellow);
         margin-top: 5px;
         font-size: 1.3rem;
         color: #333;

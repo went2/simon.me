@@ -107,8 +107,6 @@ function getFilesFromLocal(entry: string): TPostFileData[] {
 }
 
 export function getPostIds() {
-  console.log('getPostIds====, allPostFiles', allPostFiles);
-  
   return allPostFiles.map(postFile => {
     return {
       params: {
