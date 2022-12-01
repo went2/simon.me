@@ -55,7 +55,7 @@ const Header: NextPage = () => {
           </div>
         </div>
         <p className={styles.indexAbout}>
-          我是一名前端工程师，大学就读教育技术学专业，毕业后在K12教育培训公司从事过教学设计、产品运营等工作。后自学前端开发，开发过后台管理系统、H5小游戏、移动端页面、小程序等应用。
+          我是 Simon，大学主修教育技术学，毕业后做了几年教学设计、产品运营等工作，现在从事 web 前端开发。
         </p>
       </section>
     </header>

@@ -6,6 +6,7 @@
     width: 100%;
     margin-top: 25px;
     padding: 1rem;
+    transition: all .2s ease-in;
 
     .sectionTitle {
       margin: 10px 0;
@@ -31,8 +32,7 @@
         }
 
         .postItemTitle {
-          border-bottom: 3px solid var(--minion-yellow);
-          margin-bottom: 1rem;
+          border-bottom: 2.5px solid var(--minion-yellow);
           font-size: 1.3rem;
           color: #333;
           font-weight: 500;
@@ -43,6 +43,11 @@
         .postItemTitle:hover {
           background-color: var(--minion-yellow);
         }
+
+        .postDesc {
+          color: #646464;
+          line-height: 1.5;
+        }
       }
 
     }
@@ -52,7 +57,7 @@
 @media (any-hover: hover) {
   .container {
     .section:hover {
-      box-shadow: 0 5px 40px rgb(0 0 0 / 5%);
+      box-shadow: 0 5px 20px rgb(0 0 0 / 5%);
     }
   }
 }

@@ -54,7 +54,7 @@ const Home: NextPageWithLayout = (props: { sortedPosts?: { [key: string]: Array<
                       </Link>
                       <span className={styles.postDate}>{post.date}</span>
                     </h3>
-                    <p>{post.abstract}</p>
+                    <p className={styles.postDesc}>{post.abstract}</p>
                   </div>
                 ))
               }

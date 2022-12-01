@@ -49,7 +49,7 @@ const About: NextPageWithLayout = () => {
       </div>
 
       <CollapseContent title='个人简介'>
-        教育技术学硕士毕业，在教育公司从事教学设计、产品运营等工作。后自学前端开发，目前从事前端开发，开发过后台管理系统、H5小游戏、移动端H5、小程序等应用的界面。
+        大学和研究生就读教育技术学专业，毕业后在 K12 教育培训公司从事教学设计、产品运营等工作。后学习前端开发，开发过后台管理系统、H5小游戏、移动端H5、小程序等应用。
       </CollapseContent>
 
       <CollapseContent title='工作经历'>
@@ -57,7 +57,7 @@ const About: NextPageWithLayout = () => {
           <header className={styles.expHeader}>
             <JobTitle>前端开发工程师</JobTitle>
             <CompanyName>上海胜者教育有限公司 | 在线学堂部</CompanyName>
-            <WorkingYear>2021年8月 – 2022年5月</WorkingYear>
+            <WorkingYear>2021年8月 —— 2022年5月</WorkingYear>
           </header>
 
           <div className={styles.expDes}>
@@ -67,21 +67,21 @@ const About: NextPageWithLayout = () => {
               <p><strong>1. 后台管理系统</strong></p>
               <p>概述：公司内部的销售、财务、客服等人员使用的后台管理系统，有订单管理、财务管理、教务管理等功能，前后端分离，前端技术栈 Vue2 + TypeScript + AntDesign Vue。</p>
               <p>我的角色：中途接手项目，接手时项目已有完善的基础架构（权限管理、动态路由、通用业务组件等），了解基础架构后，我继续进行业务页面的开发，直至项目上线。</p>
-              <p>项目周期：2021.8-2021.11</p>
+              <p>项目周期：2021.8——2021.11</p>
             </section>
 
             <section className={styles.jobDes}>
               <p><strong>2.	H5 小游戏</strong></p>
               <p>概述：在移动端玩的 H5 小游戏。使用 Egret 引擎开发，build成压缩包，在 App 端下载使用。</p>
               <p>我的角色：调研与独立开发H5小游戏：前期花4天调研 Egret 系列工具（引擎API、龙骨动画制作工具），开发周期内与产品经理沟通需求，设计小游戏状态、资源、视图的管理，完成3个小游戏开发与部署。期间对 Egret 引擎Api、DragonBone 龙骨动画有较多使用。</p>
-              <p>项目周期：2021.11-2021.12</p>
+              <p>项目周期：2021.11——2021.12</p>
             </section>
 
             <section className={styles.jobDes}>
               <p><strong>3.	移动端 H5 应用</strong></p>
               <p>概述：公司的移动端 App 应用中的部分模块要用 H5 方式重构，需要前端开发相应的移动端页面，build成压缩包，在 App 端下载呈现，使用Vue2 + TypeScript + Vant UI。</p>
               <p>我的角色：负责项目的设计、开发与上线：前期与产品沟通项目需求，根据需求设计项目文件结构，做了一些基础封装（网络请求、通用业务组件等），在此基础上开发了两个业务模块，并上线交付。</p>
-              <p>项目周期：2022.3-2022.5</p>
+              <p>项目周期：2022.3——2022.5</p>
             </section>
 
           </div>
@@ -91,7 +91,7 @@ const About: NextPageWithLayout = () => {
           <header className={styles.expHeader}>
             <JobTitle>教学设计师</JobTitle>
             <CompanyName>上海乐好教育科技有限公司 | 运营部</CompanyName>
-            <WorkingYear>2018年3月 – 2021年6月</WorkingYear>
+            <WorkingYear>2018年3月 —— 2021年6月</WorkingYear>
           </header>
 
           <div className={styles.expDes}>
@@ -131,7 +131,7 @@ const About: NextPageWithLayout = () => {
           <header className={styles.expHeader}>
             <JobTitle>教学设计师</JobTitle>
             <CompanyName>上海思创网络科技有限公司 | 课程运营部</CompanyName>
-            <WorkingYear>2017年7月 – 2018年2月</WorkingYear>
+            <WorkingYear>2017年7月 —— 2018年2月</WorkingYear>
           </header>
 
           <div className={styles.expDes}>
@@ -151,7 +151,7 @@ const About: NextPageWithLayout = () => {
           <header className={styles.expHeader}>
             <JobTitle>教学设计师（实习）</JobTitle>
             <CompanyName>无锡睿泰科技有限公司 | 课程研发部</CompanyName>
-            <WorkingYear>2016年7月 – 2016年9月</WorkingYear>
+            <WorkingYear>2016年7月 —— 2016年9月</WorkingYear>
           </header>
 
           <div className={styles.expDes}>
@@ -171,7 +171,7 @@ const About: NextPageWithLayout = () => {
           <header className={styles.expHeaderWithFlex}>
             <div>
               <JobTitle>教育技术学 硕士</JobTitle>
-              <CompanyName>江南大学 | 2014年9月-2017年6月 | 无锡</CompanyName>
+              <CompanyName>江南大学 | 2014年9月——2017年6月 | 无锡</CompanyName>
             </div>
             <Image
               src="/images/jiangnan_university_logo.png" alt="jiangnan_university_logo"
@@ -213,7 +213,7 @@ const About: NextPageWithLayout = () => {
           <header className={styles.expHeaderWithFlex}>
             <div>
               <JobTitle>教育技术学 学士</JobTitle>
-              <CompanyName>江南大学 | 2010年9月-2014年6月 | 无锡</CompanyName>
+              <CompanyName>江南大学 | 2010年9月——2014年6月 | 无锡</CompanyName>
             </div>
             <Image
               src="/images/jiangnan_university_logo.png" alt="jiangnan_university_logo"
