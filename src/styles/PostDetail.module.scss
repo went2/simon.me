@@ -35,6 +35,14 @@
     text-align: justify;
   }
 
+  ul {
+    padding-left: 10px;
+
+    li {
+      line-height: 1.5;
+    }
+  }
+
   li > p {
     margin-top: 15px;
   }
