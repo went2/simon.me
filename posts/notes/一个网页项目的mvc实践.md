@@ -149,6 +149,46 @@ export default function init () {
 }
 ```
 
+*React 中怎么实现类似的效果？* 
+
+React 中写的是组件，controller 中的内容也存在于组件中：
+
+```jsx
+import SearhInput from './components/SearhInput.jsx';
+import Search from './components/Search.jsx';
+
+class App extends React.Component {
+  constructor(){
+    super();
+    this.state = {
+      query: '',
+      result: []
+    }
+  }
+
+  async getSearchResult() { 
+    const result = await getSearchResultApi(query);
+    this.setState({ result });
+  }
+
+  setQuery() {
+    this.setState({ query });
+    this.getSearchResult();
+  }
+
+  render() {
+    return (
+      <>
+        {/* 给组件传回调相当于 controller init addEventListener */}
+        <SearhInput setQuery={ query => this.setQuery(query) } />
+        <SearchResult list={result} />
+      </>
+    )
+  }
+}
+
+```
+
 ### 2.3 View：`/src/js/views/` 目录下的文件
 
 view 层主要考虑两个问题：
