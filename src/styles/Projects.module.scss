@@ -25,8 +25,6 @@
         transition: all .2s ease;
         width: 340px;
 
-        cursor: default;
-
         i {
           font-size: 40px;
           color: rgb(0 0 0 /22%);
@@ -57,8 +55,8 @@
     .section {
       .inner {
         .item:hover {
-          box-shadow: 0 5px 20px rgb(0 0 0 / 22%);
-          transform: scale(1.05);
+          box-shadow: 0 5px 12px rgb(0 0 0 / 22%);
+          transform: scale(1.02);
           i {
             color: var(--minion-yellow);
             border: 1px dashed var(--minion-yellow);

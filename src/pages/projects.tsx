@@ -37,19 +37,15 @@ const Projects: NextPageWithLayout = (props: { projectsInfo?: { [key: string]: I
             <div className={styles.inner}>
               {
                 info[projectCategory].map(proj => (
-                  <div key={proj.name} className={styles.item}>
-                    <Link href={proj.url} target="_blank">
+                  <Link key={proj.name} className={styles.item} href={proj.url} target="_blank">
+                   
                       <i className={`${proj.icon}`} />
-                    </Link>
-                    <div className={styles.right}>
-                      <div className={styles.title}>
-                        <Link href={proj.url} target="_blank">
-                          {proj.name}
-                        </Link>
+                      <div className={styles.right}>
+                        <div className={styles.title}>{proj.name}</div>
+                        <div className={styles.desc}>{proj.desc}</div>
                       </div>
-                      <div className={styles.desc}>{proj.desc}</div>
-                    </div>
-                  </div>
+
+                  </Link>
                 ))
               }
             </div>
