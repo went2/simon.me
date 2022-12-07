@@ -1,5 +1,5 @@
 /**
- * model/store of posts，相当于服务端
+ * store of posts，这里相当于服务端
  * view 从这里获取文章数据，这里的数据(暂时)来源于本地文件
  */
 
@@ -8,6 +8,8 @@ import path from 'path';
 import matter from 'gray-matter';
 import { remark } from 'remark';
 import html from 'remark-html';
+
+import { getFilesFromLocal } from '../utils/processFile';
 
 export type TPost = {
   id: string;
@@ -76,34 +78,6 @@ export async function getPostInfoById(id: string) {
     htmlContent,
     ...matterResult.data
   } as TPost
-}
-
-// util functions
-function getFilesFromLocal(entry: string): TPostFileData[] {
-  const result: any = [];
-
-  // 遍历文件夹. entry: 绝对路径
-  const _readDir = (entry: string, category?: string) => {
-    const fileNames = fs.readdirSync(entry);
-
-    fileNames.forEach((fileName: string) => {
-      const location = path.join(entry, fileName);
-      const info = fs.statSync(location);
-      if(info.isDirectory()) {
-        _readDir(location, fileName);
-      } else {
-        result.push({
-          category,
-          title: fileName.replace(/\.md$/, ''),
-          path: location
-        });
-      }
-    });
-  }
-
-  _readDir(entry);
-
-  return result;
 }
 
 export function getPostIds() {

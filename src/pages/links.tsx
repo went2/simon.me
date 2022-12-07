@@ -2,6 +2,9 @@
 import type { NextPageWithLayout } from './_app';
 import type { ReactElement } from 'react';
 
+import { GetStaticProps } from 'next';
+import { getFileInfoByName } from '../models/links';
+
 // styles
 import styles from '../styles/Links.module.scss';
 
@@ -9,10 +12,23 @@ import styles from '../styles/Links.module.scss';
 import Header from '../components/CompactHeader';
 import Layout from '../components/Layout';
 
-const Links: NextPageWithLayout = () => {
+export const getStaticProps: GetStaticProps = async() => {
+  const fileData = await getFileInfoByName('links');
+
+  return {
+    props: {
+      fileData
+    }
+  }
+}
+
+const Links: NextPageWithLayout = (props: { fileData?: { htmlContent: string } }) => {
+  const { htmlContent } =  props.fileData!;
   return (
     <main className={styles.container}>
-      <h1>链接</h1>
+      <div
+        dangerouslySetInnerHTML={{ __html: htmlContent as string }}
+      />
     </main>
   );
 }

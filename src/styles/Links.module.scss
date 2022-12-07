@@ -1,4 +1,29 @@
 .container {
   max-width: 720px;
   margin: 0 auto;
+
+  // set inner html style converted from markdown
+  h2 {
+    margin: 1.5rem 0;
+  }
+
+  ul {
+    padding-left: 1rem;
+    li {
+      margin: 1rem;
+      list-style: disc;
+      line-height: 1.6;
+      a {
+        color: #333;
+        position: relative;
+        border-bottom: 3px solid #f0db4f;
+        transition: all .2 ease;
+      }
+    }
+
+    li > ul > li {
+      list-style: circle;
+    }
+  }
 }
+
