@@ -71,6 +71,8 @@ pre {
 .mkContainer {
   max-width: 720px;
   margin: 0 auto;
+  color: #34495e;
+
   h2 {
     margin: 1.5rem 0;
   }
@@ -78,9 +80,10 @@ pre {
   ul {
     padding-left: 1rem;
     li {
-      margin: 1rem;
+      margin: .6rem 0 0 .5rem;
+      // margin: 1rem;
       list-style: disc;
-      line-height: 1.6;
+      line-height: 1.5;
       a {
         color: #333;
         position: relative;
