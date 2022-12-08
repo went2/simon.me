@@ -19,10 +19,12 @@ abstract: '关于我'
     - 产品运营：运营公司的微信公众号、官网。
 
 - 关于技术会什么：
-  - HTML/CSS/JavaScript
-  - Vue3 stack
-  - React.js, React Router, Redux
-  - Corel draw, Photoshop
+  - HTML/CSS/JavaScript：用得相对较多
+  - Vue3 stack：写过公司的项目
+  - React.js, React Router, Redux：写过个人项目
+  - 算法：会写 merge sort
+  - 数据结构：[用 C++ 实现过基本数据结构](https://github.com/went2/data-structure-and-algorithm)
+  - Corel draw, Photoshop：拿来做过海报、展板、横幅
 - 不会什么：
   - 上面没有提到的
 
