@@ -1,8 +1,41 @@
 import fs from 'fs';
 import path from 'path';
+import matter from 'gray-matter';
+import { remark } from 'remark';
+import html from 'remark-html';
+
 import { TPostFileData } from '../models/posts';
 
-// 返回一个扁平的数组
+export async function getFileInfoByName(dirName: string, fileName: string) {
+  // 获取目录下的所有文件信息
+  const docsDir = path.join(process.cwd(), dirName);
+  const allDocsFiles = getFilesFromLocal(docsDir);
+
+  // 根据文件名找到绝对路径
+  const filePath = allDocsFiles.find(file => file.title === fileName)!.path;
+  const fileContent = fs.readFileSync(filePath, 'utf8');
+  
+  // 读取html
+  const matterResult = matter(fileContent);
+
+  const processedContent = await remark()
+  .use(html)
+  .process(matterResult.content)
+
+  const htmlContent = processedContent.toString();
+
+  return {
+    htmlContent,
+    ...matterResult.data
+  }
+  
+}
+
+/**
+ * 遍历嵌套的目录，返回一个包含文件信息的扁平的数组
+ * @param entry 目录的绝对路径
+ * @returns 
+ */
 export function getFilesFromLocal(entry: string): TPostFileData[] {
   const result: any = [];
 
@@ -26,6 +59,6 @@ export function getFilesFromLocal(entry: string): TPostFileData[] {
   }
 
   _readDir(entry);
-
+  
   return result;
 }

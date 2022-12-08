@@ -3,17 +3,14 @@ import type { NextPageWithLayout } from './_app';
 import type { ReactElement } from 'react';
 
 import { GetStaticProps } from 'next';
-import { getFileInfoByName } from '../models/links';
-
-// styles
-import styles from '../styles/Links.module.scss';
+import { getFileInfoByName } from '../utils/processFile';
 
 // components
 import Header from '../components/CompactHeader';
 import Layout from '../components/Layout';
 
 export const getStaticProps: GetStaticProps = async() => {
-  const fileData = await getFileInfoByName('links');
+  const fileData = await getFileInfoByName('docs', 'links');
 
   return {
     props: {
@@ -25,7 +22,7 @@ export const getStaticProps: GetStaticProps = async() => {
 const Links: NextPageWithLayout = (props: { fileData?: { htmlContent: string } }) => {
   const { htmlContent } =  props.fileData!;
   return (
-    <main className={styles.container}>
+    <main className="mkContainer">
       <div
         dangerouslySetInnerHTML={{ __html: htmlContent as string }}
       />
