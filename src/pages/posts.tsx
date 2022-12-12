@@ -38,7 +38,8 @@ const categoryI18n: any =  {
   essays: '随笔',
   notes: '笔记',
   references: '参考',
-  translations: '翻译'
+  translations: '翻译',
+  coffee: '咖啡'
 }
 
 const Posts: NextPageWithLayout = (props: { categoriedPosts?: { [key: string]: Array<TPost> } }) => {
@@ -50,7 +51,7 @@ const Posts: NextPageWithLayout = (props: { categoriedPosts?: { [key: string]: A
           Object.keys(posts).map(category => {
             return (
               <section key={category} className={styles.section}>
-                <div className={styles.sectionTitle}>{ categoryI18n[category] }</div>
+                <div id={category} className={styles.sectionTitle}>{ categoryI18n[category] }</div>
                 <div className={styles.sectionList}>
                   {
                     posts[category].map(post => (
