@@ -68,10 +68,11 @@ pre {
 }
 
 // set inner html style converted from markdown
-.mkContainer {
+.mdContainer {
   max-width: 720px;
   margin: 0 auto;
   color: #34495e;
+  padding: 0 1.5rem;
 
   h2 {
     margin: 1.5rem 0;

@@ -22,7 +22,7 @@ export const getStaticProps: GetStaticProps = async() => {
 const Links: NextPageWithLayout = (props: { fileData?: { htmlContent: string } }) => {
   const { htmlContent } =  props.fileData!;
   return (
-    <main className="mkContainer">
+    <main className="mdContainer">
       <div
         dangerouslySetInnerHTML={{ __html: htmlContent as string }}
       />
