@@ -39,7 +39,7 @@ const categoryI18n: any =  {
   notes: '笔记',
   references: '参考',
   translations: '翻译',
-  coffee: '咖啡'
+  coffee: '烘咖啡'
 }
 
 const Posts: NextPageWithLayout = (props: { categoriedPosts?: { [key: string]: Array<TPost> } }) => {
