@@ -44,11 +44,10 @@
       }
 
       .postItemTitle {
-        display: inline-block;
         border-bottom: 2px dashed var(--minion-yellow);
-        margin-top: 5px;
-        font-size: 1.3rem;
+        line-height: 1.7;
         color: #333;
+        font-size: 1.3rem;
         font-weight: 400;
         letter-spacing: 1px;
         flex: 0 1;
