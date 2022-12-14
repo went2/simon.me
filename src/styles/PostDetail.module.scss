@@ -18,7 +18,7 @@
   // define styles for text converted from markdown,could only use element selector right now
   h1, h2, h3 {
     color: #343a40;
-    line-height: 1.5rem;
+    line-height: 1.5;
   }
   h2 {
     font-size: 1.3rem;
@@ -36,11 +36,17 @@
   }
 
   ul {
-    padding-left: 10px;
+    padding-left: 12px;
 
     li {
       line-height: 1.5;
+      margin: .6rem 0 0 .5rem;
+      list-style: disc;
     }
+  }
+
+  li > ul > li {
+    list-style: circle;
   }
 
   li > p {
@@ -70,6 +76,7 @@
 
   pre > code {
     white-space: pre-wrap;
+    word-break: break-word;
   }
 
   // blockquote

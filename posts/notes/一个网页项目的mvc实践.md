@@ -37,9 +37,9 @@ abstract: '解释一个的查菜谱 demo 的前端 MVC 结构的实践'
 
 ## 2.本项目的 MVC 实践
 
-### 2.1 Model：`/src/js/model/index.js`
+### 2.1 Model
 
-model 中有两个主要结构：state 和操作 state 的方法。这里用对象实现state，用函数实现方法。
+model 中有两个主要结构：state 和操作 state 的方法。这里用对象实现 state，用函数实现方法。
 
 model 定义应用的所有状态，及修改状态的方法，这里的状态指从 api 服务器中获取的业务相关的数据。model 只是定义要有这些状态、如何根据业务修改状态，自己不会主动创建、修改状态，而是等待 controller 的访问和修改。
 
@@ -108,7 +108,7 @@ const useCityStore = defineStore('city', {
 export default useCityStore;
 ```
 
-### 2.2 Controller：`/src/js/controller.js`
+### 2.2 Controller
 
 实现两个功能：
   1. 处理页面交互，即用户点击按钮，要发生什么。绝大部分是事件处理函数，函数逻辑是：接收页面的输入 => 修改 model 中数据 => 通知相关 view 用最新的数据进行渲染；
@@ -153,7 +153,7 @@ export default function init () {
 
 React 中写的是组件，controller 中的内容也存在于组件中：
 
-```jsx
+```js
 import SearhInput from './components/SearhInput.jsx';
 import Search from './components/Search.jsx';
 
@@ -189,9 +189,9 @@ class App extends React.Component {
 
 ```
 
-### 2.3 View：`/src/js/views/` 目录下的文件
+### 2.3 Views
 
-view 层主要考虑两个问题：
+view 层主要处理两个问题：
   1. 如何生成可以绑定动态数据的模板，本项目用模板字符串实现；
   2. 如何通知 controller 层通知交互事件的发生。用户交互事件直接发生在 view 层，但处理事件的函数定义在controller 层，这里采用发布/订阅模式，controller 订阅 view 的事件（调用view的方法，传入回调），当事件发生时，view 会依次通知给所有订阅方（调用view传入的回调）。
 
@@ -230,20 +230,20 @@ class SearchView {
 export default new SearchView();
 ```
 
-view 获取模板中的dom，向 controller 暴露操作 dom 的方法，其实叫它 ViewModel 更合适。
+view 获取模板中的 dom，向 controller 暴露操作 dom 的方法，其实叫它 ViewModel 更合适。
 
 ### 2.4 controller 和 view 如何通信——Observer 模式
 
 [Observer 模式](https://en.wikipedia.org/wiki/Observer_pattern) 又叫发布/订阅模式，常用于处理事件驱动软件中处理随机发生的事件（HTTP requests, user input, distributed databases 等）。
 
-观察者模式中，有两种角色，一种叫**subject**，会维护一份依赖列表，这些依赖叫**observers**，当subject 的状态发生改变时，会自动通知这些 observers，通知的方式通常是调用 observers 传入的方法。
+观察者模式中，有两种角色，一种叫**subject**，会维护一份列表叫**observers**，当 subject 的状态发生改变时，会*自动*通知这些 observers，方式是调用 observers 传入的方法。
 
 以下词汇当作同义词使用：
 
-1. subject：被观察者、发布者；
+1. subject：被观察者、发布者、依赖；
 2. observer：观察者、订阅者；
 
-在“事件驱动”式软件中，subject 又叫事件流（stream of events）或事件流源（stream source of events），observers 叫“sinks of events”。大致理解就是，哪里产生事件，哪里就是subject。
+在“事件驱动”式软件中，subject 又叫事件流（stream of events）或事件流源（stream source of events），observers 叫 “sinks of events”。大致理解就是，哪里产生事件，哪里就是 subject。
 
 在 controller 和 view 的通信中，哪部分扮演 subject？那部分扮演 observers？
 
