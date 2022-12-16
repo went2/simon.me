@@ -10,8 +10,13 @@ abstract: '谁帮组件记录并跟踪它的状态？'
 React v16.8 中实现 Hooks 以后，用函数写组件的方式渐成趋势，相比类组件，它的写法更简明，写的时候心智负担也小。
 
 简要说明开发者和 React 的分工：
-  - 开发者：1）定义函数式组件；2）使用组件
-  - React：1）解析组件定义中的 jsx 语法（babel in fact)；2）调用函数，接过返回值生成ReactElement，挂载DOM；3）根据状态改变，再调用函数生成ReactElement，更新DOM
+  - 开发者：
+    1. 定义函数式组件；
+    2. 使用组件
+  - React：
+    1. 解析组件定义中的 jsx 语法（babel in fact)；
+    2. 调用函数，接过返回值生成ReactElement，挂载DOM；
+    3. 根据状态改变，再调用函数生成ReactElement，更新DOM
 
 函数式组件是纯函数，纯函数一经写完，（输入相同时）无论调用多少次，都返回一样结果，且不会有副作用，因为函数返回后，它的 `stack frame` 在调用栈中移除，在作用域中声明的变量被垃圾回收。
 
@@ -28,11 +33,11 @@ React v16.8 中实现 Hooks 以后，用函数写组件的方式渐成趋势，�
 
 问：在重复渲染时，Hook 是怎么区分哪个是函数式组件的初始值，哪个是最新设置的值？
 
-答：React 内部将组件状态保存到 [fiber](https://github.com/acdlite/react-fiber-architecture#what-is-a-fiber) 中。可以把一个 fiber 看成一个和组件实例关联的实体（内存中的一个对象）。这里的组件实例是广义上的，函数式组件并不会创建对象实例。
+答：React 内部将组件状态保存到 [fiber](https://github.com/acdlite/react-fiber-architecture#what-is-a-fiber) 中。可以把一个 fiber 看成一个和组件实例关联的实体（内存中的一个对象）。我说的“组件实例”是广义上的，因为函数式组件并不会创建对象实例。
 
 是 React renderer（渲染器）能让 hook 访问相关的上下文、状态；又是 React renderer 调用组件函数，所以 React renderer 能把（组件函数内部调用的）hook 和该组件实例关联起来。
 
-用伪代码说明一下：
+以下用伪代码表示 setState 的内部过程：
 
 ```js
 let currentlyRenderedCompInstance;
@@ -61,7 +66,7 @@ function render(comp, props) {
 
   currentlyRenderedCompInstance = compInstanceToken;
 
-  return { 
+  return {
     instance: compInstanceToken,
     children: comp(props)
   };
@@ -70,8 +75,8 @@ function render(comp, props) {
 
 上面 `useState` 能根据实例的 token，获取当前渲染的组件实例，访问属于它的状态。其他内建的 hooks 也是照样为组件维护对应的状态。
 
-（注：代码的意思是说，React 内部有独立的数据结构来保存组件和它状态的对应关系。重复渲染时，组件函数重新执行，遇到 useState()，会根据当前渲染的组件的token，从数据结构中查它的状态，没有状态则设初始状态）
+（译注：代码的意思是说，React 内部有独立的数据结构来保存组件和它状态的对应关系。重复渲染时，组件函数重新执行，遇到 useState()，会根据当前渲染的组件的token，从数据结构中查它的状态，没有状态则设初始状态）
 
 - 4. 想更深入了解，有什么参考资料？
-- [Github React Fiber 架构解释](https://github.com/acdlite/react-fiber-architecture#what-is-a-fiber)：React 文档社区中的开发者的理解
-- [callibrity.com/blog/deep-dive-into-react-hooks-and-complex-functional-components](https://www.callibrity.com/blog/deep-dive-into-react-hooks-and-complex-functional-components)：为什么 React Hook 不能在条件语句中调用？React 靠它确定每个组件对应的状态。
+  - [Github React Fiber 架构解释](https://github.com/acdlite/react-fiber-architecture#what-is-a-fiber)：React 文档社区中的开发者的理解
+  - [callibrity.com/blog/deep-dive-into-react-hooks-and-complex-functional-components](https://www.callibrity.com/blog/deep-dive-into-react-hooks-and-complex-functional-components)：为什么 React Hook 不能在条件语句中调用？React 靠它确定每个组件对应的状态。
