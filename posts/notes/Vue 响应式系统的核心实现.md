@@ -7,13 +7,15 @@ abstract: '回顾了实现一个 mini-vue 课程中的 reactivity 实现过程�
 
 # Vue 响应式系统的核心实现
 
+[Evan You 有一个课程](https://www.vuemastery.com/courses/vue3-deep-dive-with-evan-you/virtual-dom-and-render-functions)讲解 Vue 的核心逻辑（渲染、响应式）的实现，今天回顾了一下响应式部分的实现，用几个阶段记录其过程：
+
 ## 阶段一：用发布订阅模式实现基本的响应性
 
 期望实现以下效果：
 
 - 变量 msg 值发生改变后，会自动执行用到该变量的函数
 
-分析：变量 msg 叫依赖（dependent），内部要保存它的订阅者（effect），同时设置规则：在获取它的值时触发依赖收集，在它的值改变时，通知订阅函数
+变量 msg 就叫依赖（dependent），一个依赖的内部要保存它的订阅者（effect），同时要有方法：在获取它的值时触发依赖收集，在它的值改变时，通知订阅函数。
 
 ```js
 class Dep {
@@ -59,7 +61,7 @@ msg1.value = '3333'; // 自动打印 rendering 3333，效果实现
 
 ## 阶段二：定义 watchEffect 自动设置 activeEffect
 
-定义 `watchEffect()`，只要开发者调用 watchEffect, 传入自定义的effect，就会将它设为activeEffect，并调用一次以触发依赖收集。
+定义 `watchEffect()`，只要开发者调用 watchEffect, 传入自定义的 effect，就会将它设为activeEffect，并调用一次以触发依赖收集。
 
 ```js
 function watchEffect(effect) {
@@ -75,11 +77,17 @@ watchEffect(() => {
 msg1.value = '4444'; // 自动打印 rendering againg 4444，效果实现
 ```
 
-## 阶段三：使对象结构的 key 都具有响应性
+## 阶段三：使普通对象的 key 都具有响应性
 
-上面的实现把依赖的功能与值的存取放到一个 dep 对象中，只实现了 msg.value 的值改变时自动触发它的 effect 函数，现在需要让一个普通对象的 key 也有这样的响应性。
+上面实现了一个普通变量的响应性，用到一个 dep 对象来管理变量的值、实现订阅、通知等方法；现在需要让一个普通对象的 key 也有这样的响应性。
 
-就要有一个数据结构存一种映射关系：key 是需要响应性对象，类型是对象；value 是这个对象的 key 的 dep，类型是 Map
+需要有一个数据结构存一种映射关系：
+  - key 是需要响应性的对象，类型是对象；
+  - value 是这个对象的 key 的 dep 对象，类型是 Map
+
+这有点绕，实际过程仍然是，需要一个 dep 对象来实现一个属性（变量）的响应性。一个普通对象有多少属性，就需要多少个 dep 对象来实现。对于一个变量，可以用类实现对它的读取操作的监听；对于一个对象，如何监听其属性的读取？
+  - vue2：为对象的每个 key 执行 Object.defineProperty，使用存取描述符，监听对象属性的读写，读一个属性时，收集依赖，改变属性值时，进行通知。
+  - vue3：为每个对象创建代理对象 Proxy，监听对代理对象的读写操作。
 
 ```js
 const targetMap = new WeakMap();
