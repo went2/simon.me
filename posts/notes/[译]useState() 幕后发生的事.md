@@ -79,4 +79,4 @@ function render(comp, props) {
 
 - 4. 想更深入了解，有什么参考资料？
   - [Github React Fiber 架构解释](https://github.com/acdlite/react-fiber-architecture#what-is-a-fiber)：React 文档社区中的开发者的理解
-  - [callibrity.com/blog/deep-dive-into-react-hooks-and-complex-functional-components](https://www.callibrity.com/blog/deep-dive-into-react-hooks-and-complex-functional-components)：为什么 React Hook 不能在条件语句中调用？React 靠它确定每个组件对应的状态。
+  - [深入了解 React Hooks](https://www.callibrity.com/blog/deep-dive-into-react-hooks-and-complex-functional-components)：为什么 React Hook 不能在条件语句中调用？React 靠它确定每个组件对应的状态。
