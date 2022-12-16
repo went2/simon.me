@@ -17,14 +17,14 @@ React v16.8 中实现 Hooks 以后，用函数写组件的方式渐成趋势，�
 
 如果在函数中初始化变量，在 jsx 中引用，每次 React 调用函数组件，里面的值都是初始值。
 
-- 1. 如何让组件在多次渲染中保留它的状态？
-- 用 Hooks。
+- 如何让组件在多次渲染中保留它的状态？
+  - 用 Hooks。
 
-- 2. 什么是 Hooks？
-- 是一类函数的统称。按官方说法，让我们能复用涉及状态的逻辑代码（reuse stateful logic）。"复用"是说 React 不必重复花费资源在跟踪某个状态的变化上。
+- 什么是 Hooks？
+  - 是一类函数的统称。按官方说法，让我们能复用涉及状态的逻辑代码（reuse stateful logic）。"复用"是说 React 不必重复花费资源在跟踪某个状态的变化上。
 
-- 3. 为什么在函数式组件内调用 `useState()` 就能让组件记住状态？谁帮组件记录并跟踪状态？
-- 这个问题，早有好奇的[开发者提在 `stackoverflow` 上](https://stackoverflow.com/questions/53729917/react-hooks-whats-happening-under-the-hood)，以下对高赞答案作翻译，重点关注伪代码示例：
+- 为什么在函数式组件内调用 `useState()` 就能让组件记住状态？谁帮组件记录并跟踪状态？
+  - 这个问题，早有好奇的[开发者提在 `stackoverflow` 上](https://stackoverflow.com/questions/53729917/react-hooks-whats-happening-under-the-hood)，以下对高赞答案作翻译，重点关注伪代码示例：
 
 问：在重复渲染时，Hook 是怎么区分哪个是函数式组件的初始值，哪个是最新设置的值？
 
