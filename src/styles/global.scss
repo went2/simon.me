@@ -75,6 +75,11 @@ pre {
   color: #34495e;
   padding: 0 1.5rem;
 
+  h1, h2, h3 {
+    color: #343a40;
+    line-height: 1.6;
+  }
+
   h2 {
     margin: 1.5rem 0;
   }
@@ -83,7 +88,6 @@ pre {
     padding-left: 1rem;
     li {
       margin: .6rem 0 0 .5rem;
-      // margin: 1rem;
       list-style: disc;
       line-height: 1.5;
       a {
