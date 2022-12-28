@@ -12,7 +12,8 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
-h2, h3 {
+h2,
+h3 {
   margin: 0;
 }
 
@@ -45,7 +46,7 @@ pre {
   border-radius: 4px;
   background: #fafafa;
   padding: 1em;
-  font-size: .9rem;
+  font-size: 0.9rem;
   overflow-x: scroll;
 }
 
@@ -75,7 +76,9 @@ pre {
   color: #34495e;
   padding: 0 1.5rem;
 
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3 {
     color: #343a40;
     line-height: 1.6;
   }
@@ -87,19 +90,24 @@ pre {
   ul {
     padding-left: 1rem;
     li {
-      margin: .6rem 0 0 .5rem;
+      margin: 0.6rem 0 0 0.5rem;
       list-style: disc;
       line-height: 1.5;
       a {
         color: #333;
         position: relative;
         border-bottom: 3px solid #f0db4f;
-        transition: all .2 ease;
+        transition: all 0.2 ease;
       }
     }
 
     li > ul > li {
       list-style: circle;
+    }
+
+    // remove style of quoted in li ele
+    li:has(blockquote) {
+      list-style: none;
     }
   }
 }
