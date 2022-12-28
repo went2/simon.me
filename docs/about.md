@@ -1,8 +1,8 @@
 ---
-title: '关于我'
-date: '2022-12-08'
-year: '2022'
-abstract: '关于我'
+title: "关于我"
+date: "2022-12-08"
+year: "2022"
+abstract: "关于我"
 ---
 
 # 关于我
@@ -11,13 +11,12 @@ abstract: '关于我'
 
 - INFJ/做具体的事情前需要先了解全景（big picture）
 
-- 当前状态: 找工作中
-
 - [关于这个网站](/post/关于本站)
 
 - 为什么转行：学习一门通用的技术；学习从软件工程视角的思考问题的方式；想参与开源社区作贡献；
 
 - 转行前是做什么：
+
   - 从教育技术专业毕业；
   - 在一家提供 K12 教师培训服务的创业公司，做过这些事情：
     - 项目经理：做预算、排计划、执行培训计划；
@@ -28,16 +27,17 @@ abstract: '关于我'
   - HTML/CSS/JavaScript：用得相对较多
   - TypeScript: 当作有类型的 JS 使用
   - Vue3 stack：写过公司的项目
-  - React.js, React Router, Redux：写过demo
+  - React.js, React Router, Redux：写过 demo
   - 数据结构：[用 C++ 实现过基本数据结构](https://github.com/went2/data-structure-and-algorithm)
   - Corel draw, Photoshop：拿来做过海报、展板、横幅
 - 不会什么：
+
   - 上面没有提到的
 
 - 业余兴趣：
+
   - 关注正念与生活中的觉察，在知乎上写了一个回答作为我的理解：[我是个情绪波动很大的人，怎么控制情绪？](https://www.zhihu.com/question/46161977/answer/149482458)
   - 手烘一些[咖啡豆](/posts#coffee)
-  - 偶尔做一些翻译，目前贡献了一些 MDN 和 Vue3 技术文档的翻译、校验工作，也算变相参与开源社区贡献了 :) 
+  - 偶尔做一些翻译，目前贡献了一些 MDN 和 Vue3 技术文档的翻译、校验工作，也算变相参与开源社区贡献了 :)
 
 - 这是[我的简历](/cv)，有兴趣可以看一下
-
