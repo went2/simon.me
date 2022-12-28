@@ -75,6 +75,14 @@ pre {
   margin: 0 auto;
   color: #34495e;
   padding: 0 1.5rem;
+  font-size: 1.1rem;
+
+  .date {
+    color: #646464;
+    margin: 0 0 -22px 5px;
+    font-style: italic;
+    margin-bottom: 2px;
+  }
 
   h1,
   h2,
@@ -84,7 +92,18 @@ pre {
   }
 
   h2 {
+    font-size: 1.3rem;
     margin: 1.5rem 0;
+  }
+  h3 {
+    font-size: 1.15rem;
+    margin-top: 30px;
+  }
+
+  // paragraph
+  p {
+    margin-top: 15px;
+    text-align: justify;
   }
 
   ul {
@@ -94,20 +113,23 @@ pre {
       list-style: disc;
       line-height: 1.5;
       a {
-        color: #333;
+        color: #34495e;
         position: relative;
         border-bottom: 3px solid #f0db4f;
         transition: all 0.2 ease;
       }
     }
 
+    li > p {
+      margin-top: 15px;
+    }
+
     li > ul > li {
       list-style: circle;
     }
+  }
 
-    // remove style of quoted in li ele
-    li:has(blockquote) {
-      list-style: none;
-    }
+  img {
+    width: 100%;
   }
 }
