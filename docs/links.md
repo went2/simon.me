@@ -1,6 +1,7 @@
 ---
 title: "链接"
 date: "2022-12-07"
+updated: "2023-02-12"
 year: "2022"
 abstract: "浏览器里保存的链接"
 ---
@@ -26,18 +27,6 @@ abstract: "浏览器里保存的链接"
 - [shirleywu](https://shirleywu.studio/)
 - [D3.js 作者博客](https://bost.ocks.org/mike/)
 
-## 中文博客
-
-- [刘未鹏](http://mindhacks.cn/)，《暗时间》作者。[心智探寻（十一）](http://mindhacks.cn/2017/10/17/through-the-maze-11/)，一文提到觉察：“觉察和捕捉住这个下意识的回避的瞬间，并在此时停下来，去感受这个「怕」，同时慢慢地在行为上开始往前走，在这个过程中继续一直和始终对这个「怕」保持觉察。一边往前迈步，一边觉察内心的「怕」”，用日常语言我们说：“硬着头皮做下去”，人的心智不仅是感受本身，也是产生感受的背景。
-
-- [夜行人](http://wwj718.github.io/)，读研时看到他的文章：[Scratch 的前世今生](http://wwj718.github.io/post/%E5%B0%91%E5%84%BF%E7%BC%96%E7%A8%8B/scratch/)，关注他是想说在写博客这事上我可以更勤奋。
-
-- [黄玄 Hux Blog](https://huangxuan.me/)，网站 UI 写得很简洁，主题前端及其他。
-
-- [Just Lepture](https://lepture.com/)，博客托管平台 [Typlog](https://typlog.com/)的作者，文笔好。
-
-- [枫影.app](https://justinyan.app/)，复古桌面电脑风格的个人网站。
-
 ## 计算机科学
 
 - [CS 自学指南](https://teachyourselfcs.com/)
@@ -46,4 +35,14 @@ abstract: "浏览器里保存的链接"
 - [CS 61A 2018 Spring](https://inst.eecs.berkeley.edu/~cs61a/sp18/)
 
 - Linux
-  - [Linux 核心設計/實作课程表](http://wiki.csie.ncku.edu.tw/linux/schedule)，台成大资工系，黃敬群教授。
+  - [Linux 核心設計/實作 Spring 2023 课程表](http://wiki.csie.ncku.edu.tw/linux/schedule)，台成大资工系，黃敬群教授。
+
+## 中文博客
+
+- [刘未鹏](http://mindhacks.cn/)，《暗时间》作者。[心智探寻（十一）](http://mindhacks.cn/2017/10/17/through-the-maze-11/)，一文提到觉察：“觉察和捕捉住这个下意识的回避的瞬间，并在此时停下来，去感受这个「怕」，同时慢慢地在行为上开始往前走，在这个过程中继续一直和始终对这个「怕」保持觉察。一边往前迈步，一边觉察内心的「怕」”，用日常语言我们说：“硬着头皮做下去”，人的心智不仅是感受本身，也是产生感受的背景。
+
+- [夜行人](http://wwj718.github.io/)，读研时看到他的文章：[Scratch 的前世今生](http://wwj718.github.io/post/%E5%B0%91%E5%84%BF%E7%BC%96%E7%A8%8B/scratch/)。
+
+- [黄玄 Hux Blog](https://huangxuan.me/)，网站 UI 写得很简洁，主题前端及其他。
+
+- [Just Lepture](https://lepture.com/)，博客托管平台 [Typlog](https://typlog.com/)的作者，文笔好。
