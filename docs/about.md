@@ -7,7 +7,7 @@ abstract: "关于我"
 
 # 关于我
 
-一个普通的前端行业从业者。没有天分，但尽人事，虽不敏，然诚矣。
+一个普通的前端行业从业者。没有天分，但尽人事。
 
 - INFJ/做具体的事情前需要先了解全景（big picture）
 
@@ -24,15 +24,13 @@ abstract: "关于我"
     - 产品运营：运营公司的微信公众号、官网。
 
 - 关于技术会什么：
-  - HTML/CSS/JavaScript：用得相对较多
-  - TypeScript: 当作有类型的 JS 使用
-  - Vue3 stack：写过公司的项目
-  - React.js, React Router, Redux：写过 demo
+
+  - HTML/CSS/JavaScript
+  - TypeScript
+  - Vue3 stack
+  - React.js, React Router, Redux
   - 数据结构：[用 C++ 实现过基本数据结构](https://github.com/went2/data-structure-and-algorithm)
   - Corel draw, Photoshop：拿来做过海报、展板、横幅
-- 不会什么：
-
-  - 上面没有提到的
 
 - 业余兴趣：
 
