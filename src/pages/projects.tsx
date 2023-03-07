@@ -1,69 +1,77 @@
 // types
-import type { NextPageWithLayout } from './_app';
-import type { ReactElement } from 'react';
+import type { NextPageWithLayout } from "./_app";
+import type { ReactElement } from "react";
 
 // styles
-import styles from '../styles/Projects.module.scss';
+import styles from "../styles/Projects.module.scss";
 
 // utils
-import { GetStaticProps } from 'next';
-import { getProjectsInfo, IProjectInfo } from '../models/projects';
+import { GetStaticProps } from "next";
+import { getProjectsInfo, IProjectInfo } from "../models/projects";
 
 // components
-import Header from '../components/CompactHeader';
-import Layout from '../components/Layout';
-import Link from 'next/link';
+import Header from "../components/CompactHeader";
+import Layout from "../components/Layout";
+import Link from "next/link";
+import Image from "next/image";
 
-export const getStaticProps: GetStaticProps = async() => {
-  const projectsInfo = await getProjectsInfo();
+export const getStaticProps: GetStaticProps = async () => {
+  const projects = await getProjectsInfo();
 
   return {
     props: {
-      projectsInfo
-    }
-  }
-}
+      projects,
+    },
+  };
+};
 
-const Projects: NextPageWithLayout = (props: { projectsInfo?: { [key: string]: IProjectInfo[] } }) => {
-  const info = props.projectsInfo!;
+const Projects: NextPageWithLayout = (props: {
+  projects?: {
+    items: IProjectInfo[];
+    description: string;
+  };
+}) => {
+  const { items, description } = props.projects!;
 
   return (
     <main className={styles.container}>
-      {
-        Object.keys(info).map(projectCategory => (
-          <section key={projectCategory} className={styles.section}>
-            <h2>{ projectCategory.replace(/^\S/, s => s.toUpperCase()) }</h2>
-
-            <div className={styles.inner}>
-              {
-                info[projectCategory].map(proj => (
-                  <Link key={proj.name} className={styles.item} href={proj.url} target="_blank">
-                   
-                      <i className={`${proj.icon}`} />
-                      <div className={styles.right}>
-                        <div className={styles.title}>{proj.name}</div>
-                        <div className={styles.desc}>{proj.desc}</div>
-                      </div>
-
-                  </Link>
-                ))
-              }
+      <div className={styles.mainDesc}>{description}</div>
+      <div className={styles.itemsList}>
+        {items.map((item) => (
+          <section key={item.name} className={styles.sectionItem}>
+            <h2>{item.name}</h2>
+            <div className={styles.extraInfo}>
+              <span className={styles.updateTime}>{item.updateAt}</span>
+              {item.tags.map((tag) => (
+                <span key={tag} className={styles.tag}>
+                  {tag}
+                </span>
+              ))}
             </div>
+            <Link className={styles.item} href={item.url} target="_blank">
+              <Image
+                className={styles.image}
+                src={item.cover}
+                alt="{item.name}"
+                width={180}
+                height={180}
+              />
+            </Link>
+            <div className={styles.desc}>{item.desc}</div>
           </section>
-        ))
-        
-      }
+        ))}
+      </div>
     </main>
-  )
+  );
 };
 
 Projects.getLayout = function getLayout(page: ReactElement) {
   return (
     <Layout>
       <Header />
-      { page }
-    </Layout>  
-  )
-}
+      {page}
+    </Layout>
+  );
+};
 
 export default Projects;

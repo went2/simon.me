@@ -3,71 +3,74 @@
   margin: 0 auto;
   padding: 1rem;
 
-  .section {
+  .mainDesc {
+    font-size: 16px;
+    color: #626262;
+    margin: 5px 0;
+  }
+}
+
+.itemsList {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  .sectionItem {
+    margin: 15px 0;
+    width: 200px;
+    display: flex;
+    flex-direction: column;
+
     h2 {
       color: #343a40;
-      border-left: .3rem solid #343a40;
-      margin: 35px 0 16px 0;
-      padding-left: .8rem;
+      border-left: 0.3rem solid #343a40;
+      margin: 10px 0 16px 0;
+      padding-left: 0.8rem;
+      font-size: 18px;
+      cursor: default;
     }
 
-    .inner {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
+    .extraInfo {
+      margin-top: -10px;
+      margin-bottom: 10px;
+      padding: 5px 0;
+      font-size: 12px;
+      font-weight: 500;
+      color: #555;
+      cursor: default;
 
-      .item {
-        margin: 5px 0;
-        padding: 12px;
-        border-radius: 5px;
-        display: flex;
-        align-items: flex-start;
-        transition: all .2s ease;
-        width: 340px;
-
-        i {
-          font-size: 40px;
-          color: rgb(0 0 0 /22%);
-          width: 66px;
-          height: 66px;
-          flex-shrink: 0;
-          border: 1px dashed rgb(0 0 0 /22%);
-          text-align: center;
-          line-height: 66px;
-          transition: all .5s ease;
-        }
-        .right {
-          padding-left: 1rem;
-          .title {
-            font-size: 1.2rem;
-          }
-          .desc {
-            color: #545454;
-          }
-        }
+      .updateTime {
+        padding-left: 5px;
+        border-left: 2px solid #343a40;
       }
+      .tag {
+        padding: 1px;
+        margin-left: 6px;
+      }
+    }
+
+    .image {
+      border-radius: 2px;
+      object-fit: cover;
+      transition: all 0.2s ease-in-out;
+    }
+
+    .desc {
+      margin-top: 12px;
+      font-size: 14px;
+      color: #777;
+      font-weight: 600;
+      cursor: default;
     }
   }
 }
 
 @media (any-hover: hover) {
   .container {
-    .section {
-      .inner {
-        .item:hover {
-          box-shadow: 0 5px 12px rgb(0 0 0 / 22%);
-          transform: scale(1.02);
-          i {
-            color: var(--minion-yellow);
-            border: 1px dashed var(--minion-yellow);
-          }
-          .right {
-            .title {
-              font-weight: 500;
-            }
-          }
-        }
-
+    .sectionItem {
+      .image:hover {
+        box-shadow: 0 5px 12px rgb(0 0 0 / 22%);
+        transform: scale(1.15);
       }
     }
   }

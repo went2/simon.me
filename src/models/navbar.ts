@@ -1,7 +1,7 @@
 /**
  * navbar data
  */
-import navData from "../../local-file/navData.json";
+import navData from "../../local-data/navData.json";
 
 type INavItem = {
   name: string;

@@ -1,0 +1,61 @@
+{
+  "expriments": {
+    "items": [
+      {
+        "name": "M2R",
+        "icon": "",
+        "cover": "https://user-images.githubusercontent.com/20923112/223321822-2c57f13d-29a9-42d8-ab2b-81bd4d3223b8.gif",
+        "desc": "markdown 转简历格式",
+        "url": "https://m2r.netlify.app",
+        "updateAt": "2023-03-06",
+        "tags": ["react", "redux"]
+      },
+      {
+        "name": "YT Music",
+        "icon": "fa fa-music",
+        "cover": "https://user-images.githubusercontent.com/20923112/223386947-6e44ddda-98ae-4c12-ad66-c4e0023c2041.gif",
+        "desc": "音乐播放器小程序",
+        "url": "https://github.com/went2/yt-music",
+        "updateAt": "2022-10-11",
+        "tags": ["mini-program"]
+      },
+      {
+        "name": "On The Road",
+        "icon": "fa fa-bed",
+        "cover": "https://user-images.githubusercontent.com/20923112/223387272-d422e7bf-37a0-455a-b921-61838fcfe1b0.gif",
+        "desc": "找民宿移动 H5 应用",
+        "url": "https://github.com/went2/trip-app",
+        "updateAt": "2022-09-20",
+        "tags": ["vue3", "pinia"]
+      },
+      {
+        "name": "Cookit",
+        "icon": "fa fa-shopping-basket ",
+        "cover": "https://user-images.githubusercontent.com/20923112/223382334-a6c13282-7496-467f-80cd-a95e2bc11ed0.png",
+        "desc": "查菜谱网页应用",
+        "url": "https://cookit-simon.netlify.app/",
+        "updateAt": "2020-03-10",
+        "tags": ["vanillaJS"]
+      },
+      {
+        "name": "贪吃蛇",
+        "icon": "fa fa-circle-o-notch",
+        "cover": "https://user-images.githubusercontent.com/20923112/223383728-061a1979-1ed1-42f9-9f80-66f3b83f9b60.png",
+        "desc": "贪吃蛇，吃吃吃",
+        "url": "https://github.com/went2/greedy-snake",
+        "updateAt": "2020-04-18",
+        "tags": ["vanillaJS"]
+      },
+      {
+        "name": "Leave me unlogged",
+        "icon": "fa fa-universal-access",
+        "cover": "https://user-images.githubusercontent.com/20923112/223385029-c6346cb8-641e-4ac2-ba02-a6290fc15cb9.png",
+        "desc": "屏蔽网站登陆提醒的Chrome插件",
+        "url": "https://github.com/went2/leave-me-unlogged",
+        "updateAt": "2022-12-12",
+        "tags": ["Chrome extension"]
+      }
+    ],
+    "description": "业余时间写的一些应用示例。"
+  }
+}

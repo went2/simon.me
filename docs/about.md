@@ -29,7 +29,6 @@ abstract: "关于我"
   - TypeScript
   - Vue3 stack
   - React.js, React Router, Redux
-  - 数据结构：[用 C++ 实现过基本数据结构](https://github.com/went2/data-structure-and-algorithm)
   - Corel draw, Photoshop：拿来做过海报、展板、横幅
 
 - 业余兴趣：
