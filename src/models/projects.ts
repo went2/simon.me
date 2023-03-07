@@ -1,4 +1,4 @@
-import projectsInfo from '../../local-database/projectInfo.json';
+import projectsInfo from "../../local-file/projectInfo.json";
 
 export interface IProjectInfo {
   icon?: string;
@@ -7,9 +7,10 @@ export interface IProjectInfo {
   url: string;
 }
 
-
-export async function getProjectsInfo(): Promise<{ [key: string]: IProjectInfo[] }> {
+export async function getProjectsInfo(): Promise<{
+  [key: string]: IProjectInfo[];
+}> {
   return new Promise((resolve) => {
     resolve(projectsInfo);
-  })
+  });
 }
