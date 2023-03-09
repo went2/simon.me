@@ -1,5 +1,5 @@
 ---
-title: "了解 GPT-3——大语言模型背后的概念"
+title: "了解 GPT-3（一）——大语言模型背后的概念"
 date: "2023-03-09"
 year: "2023"
 abstract: ""
@@ -87,7 +87,7 @@ GPT-3 是个生成式模型是因为它能生成文本，生成式模型是统�
 
 以上语料库合集近万亿的文字数量。
 
-![[Pasted image 20230309180759.png]]
+![top 10 language](https://user-images.githubusercontent.com/20923112/224035167-9a2f9399-f77e-4d72-87d8-8c041f18641a.png)
 图：GPT-3 数据集收录的前 10 种语言（来源：《GPT-3》 table1-1）
 
 ### 3.3 基于转换器的模型
@@ -106,7 +106,7 @@ Transformer 模型由 Google 在 2017 年发布的论文 `Attention is All Yuo N
  
  Seq2Seq 模型由两部分组成：编码器（encoder）和解码器（decoder）。我们将编码器和解码器想象成只会两种语言的翻译家，假设编码器的母语是法语，解码器的母语英语，且两者会说相同的第二语言：如韩语，为了将法语翻译成英语，编码器将法语语句转换为韩语（这个韩语叫上下文，context）并将上下文传递给解码器，由于解码器也能理解韩语，因此就可以将韩语翻译成英语。编码器与解码器通过合作完成了法语到英语的翻译，如下图所示：
 
-![[Pasted image 20230309182403.png]]
+![Seq2Seq model](https://user-images.githubusercontent.com/20923112/224035492-50a742d3-889d-4188-a49f-d93ce443df4d.png)
 图：Seq2Seq 模型示例 （来源：《GPT-3》Figure 1-1）
 
 #### 转换器注意力机制
