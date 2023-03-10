@@ -50,12 +50,12 @@
         "name": "Leave me unlogged",
         "icon": "fa fa-universal-access",
         "cover": "https://user-images.githubusercontent.com/20923112/223385029-c6346cb8-641e-4ac2-ba02-a6290fc15cb9.png",
-        "desc": "屏蔽网站登陆提醒的Chrome插件",
+        "desc": "屏蔽网站登陆提醒的过滤规则",
         "url": "https://github.com/went2/leave-me-unlogged",
         "updateAt": "2022-12-12",
         "tags": ["Chrome extension"]
       }
     ],
-    "description": "业余时间写的一些应用示例。"
+    "description": "一些实验性的demo"
   }
 }
