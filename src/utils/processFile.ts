@@ -25,18 +25,6 @@ export async function getFileContentByName(dirName: string, fileName: string) {
   // 生成 html
   const htmlContent = await generateHtmlFromMd(matterResult.content);
 
-  const file = await unified()
-    .use(remarkParse)
-    .use(remarkStringify)
-    .use(remarkCollapse, {
-      test: (_: string, node: any) =>
-        node.type === "heading" && node.depth === 2,
-    })
-    .use(remarkRehype)
-    .use(rehypeStringify, { allowDangerousHtml: true })
-    .process(matterResult.content);
-  const htmlString = file.toString();
-
   return {
     htmlContent,
     ...matterResult.data,
@@ -47,6 +35,10 @@ export async function generateHtmlFromMd(mdContent: string): Promise<string> {
   const file = await unified()
     .use(remarkParse)
     .use(remarkStringify)
+    .use(remarkCollapse, {
+      test: (_: string, node: any) =>
+        node.type === "heading" && node.depth === 2,
+    })
     .use(remarkRehype)
     .use(rehypeStringify, { allowDangerousHtml: true })
     .process(mdContent);
