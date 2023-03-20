@@ -1,12 +1,11 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import { unified } from "unified";
+import { Preset, unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkStringify from "remark-stringify";
 import remarkCollapse from "./remarkCollapse";
 import remarkGfm from "remark-gfm";
-
 import remarkRehype from "remark-rehype";
 import rehypeRaw from "rehype-raw";
 import rehypeSanitize from "rehype-sanitize";
@@ -23,7 +22,7 @@ export async function getFileContentByName(dirName: string, fileName: string) {
   const filePath = allDocsFiles.find((file) => file.title === fileName)!.path;
   const mdContent = fs.readFileSync(filePath, "utf8");
 
-  // 使用 matter 解析 md string
+  // matter 解析 md string
   const matterResult = matter(mdContent);
 
   // 生成 html
@@ -43,10 +42,11 @@ export async function generateHtmlFromMd(mdContent: string): Promise<string> {
     .use(remarkCollapse, {
       test: (_: string, node: any) => node.depth === 2,
     })
+    // @ts-ignore
     .use(remarkRehype, { allowDangerousHtml: true })
-    .use(rehypeRaw)
-    .use(rehypeSanitize)
-    .use(rehypeStringify)
+    .use(rehypeRaw as Preset)
+    .use(rehypeSanitize as Preset)
+    .use(rehypeStringify as Preset)
     .process(mdContent);
   const html = file.toString();
   return html;
