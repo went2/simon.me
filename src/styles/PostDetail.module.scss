@@ -12,7 +12,7 @@
     margin-bottom: 2px;
   }
 
-  // define styles for text converted from markdown,could only use element selector right now
+  // define styles for text converted from markdown
   h1,
   h2,
   h3 {
@@ -20,12 +20,17 @@
     line-height: 1.5;
   }
   h2 {
-    font-size: 1.3rem;
-    margin: 35px 0 16px 0;
+    display: none;
   }
   h3 {
     font-size: 1.15rem;
     margin-top: 30px;
+  }
+  details {
+    summary {
+      font-size: 1.3rem;
+      margin: 35px 0 16px 0;
+    }
   }
 
   // paragraph
@@ -95,6 +100,5 @@
 @media screen and (max-width: 768px) {
   .container {
     box-shadow: none;
-    // border: 1px solid red;
   }
 }

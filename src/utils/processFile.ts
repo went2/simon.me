@@ -4,8 +4,13 @@ import matter from "gray-matter";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkStringify from "remark-stringify";
-import remarkCollapse from "remark-collapse";
+import remarkCollapse from "./remarkCollapse";
+// import remarkCollapse from "remark-collapse";
+import remarkGfm from "remark-gfm";
+
 import remarkRehype from "remark-rehype";
+import rehypeRaw from "rehype-raw";
+import rehypeSanitize from "rehype-sanitize";
 import rehypeStringify from "rehype-stringify";
 
 import { TPostFileData } from "../models/posts";
@@ -34,13 +39,15 @@ export async function getFileContentByName(dirName: string, fileName: string) {
 export async function generateHtmlFromMd(mdContent: string): Promise<string> {
   const file = await unified()
     .use(remarkParse)
+    .use(remarkGfm)
     .use(remarkStringify)
     .use(remarkCollapse, {
-      test: (_: string, node: any) =>
-        node.type === "heading" && node.depth === 2,
+      test: (_: string, node: any) => node.depth === 2,
     })
-    .use(remarkRehype)
-    .use(rehypeStringify, { allowDangerousHtml: true })
+    .use(remarkRehype, { allowDangerousHtml: true })
+    .use(rehypeRaw, {})
+    .use(rehypeSanitize, {})
+    .use(rehypeStringify, {})
     .process(mdContent);
   const html = file.toString();
   return html;
