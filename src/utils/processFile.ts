@@ -5,7 +5,6 @@ import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkStringify from "remark-stringify";
 import remarkCollapse from "./remarkCollapse";
-// import remarkCollapse from "remark-collapse";
 import remarkGfm from "remark-gfm";
 
 import remarkRehype from "remark-rehype";
@@ -45,9 +44,9 @@ export async function generateHtmlFromMd(mdContent: string): Promise<string> {
       test: (_: string, node: any) => node.depth === 2,
     })
     .use(remarkRehype, { allowDangerousHtml: true })
-    .use(rehypeRaw, {})
-    .use(rehypeSanitize, {})
-    .use(rehypeStringify, {})
+    .use(rehypeRaw)
+    .use(rehypeSanitize)
+    .use(rehypeStringify)
     .process(mdContent);
   const html = file.toString();
   return html;
