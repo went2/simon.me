@@ -2,7 +2,7 @@
 title: 'Vue 响应式系统的核心实现'
 date: '2022-12-13'
 year: '2022'
-abstract: '回顾了实现一个 mini-vue 课程中的 reactivity 实现过程，分步骤记录'
+abstract: '回顾了一个 mini-vue 课程中实现的“响应性”的过程，分步骤记录'
 ---
 
 # Vue 响应式系统的核心实现

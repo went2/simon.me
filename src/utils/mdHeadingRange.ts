@@ -4,8 +4,8 @@ var splice = [].splice;
 
 // Search `node` with `options` and invoke `callback`.
 function headingRange(node: any, options: any, callback: any) {
-  var test = options;
-  var children = node.children;
+  let test = options;
+  let children = node.children;
   var index = -1;
   var ignoreFinalDefinitions;
   var depth;
@@ -97,19 +97,6 @@ function headingRange(node: any, options: any, callback: any) {
         ...(range.nodes as never[]),
       ]);
     }
-
-    // if (nodesRanges.length) {
-    //   // Ensure no empty nodes are inserted.
-    //   // This could be the case if `end` is in `nodes` but no `end` node exists.
-    //   result = [];
-    //   index = -1;
-    //   while (++index < nodes.length) {
-    //     if (nodes[index]) result.push(nodes[index]);
-    //   }
-
-    //   // @ts-ignore
-    //   splice.apply(children, [start, end - start + 1].concat(result));
-    // }
   }
 }
 
