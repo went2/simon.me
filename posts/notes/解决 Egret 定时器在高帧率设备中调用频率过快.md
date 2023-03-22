@@ -45,7 +45,7 @@ new egret.Timer(1000, 4);
 - 在 120Hz 设备上，会以 0.5s 执行 1 次，2 秒执行完毕
 - 在 240Hz 设备上，会以 0.25s 执行 1 次，1 秒执行完毕
 
-基于这个特性，定时器的 delay 是基于 60fps 为基准，那么在 120Hz 设备上的 1s 相当于 60Hz 设备上的 2s，所以传入的延迟时间需是 `2000`ms。这个延迟时间就需要依赖当前设备的刷新率进行计算。可以在游戏一开始可以设置 1s 载入时间计算当前设备的帧率，除以 60 得到帧倍率，之后每次传入延迟时间时都乘以这个帧倍率。实现方式如下：
+基于这个特性，定时器的 delay 是基于 60fps 为基准，那么在 120Hz 设备上的 1s 相当于 60fps 的 2s，所以传入的延迟时间应该是 `2000`ms，即延迟时间要根据当前设备的刷新率动态进行计算，算法是 delay * 帧倍率。帧倍率指当前设备的刷新率基于 60Hz 倍数。做法：可以在游戏一开始可以设置 1s 载入时间计算当前设备的帧率，除以 60 得到帧倍率，保存到游戏全局变量。之后每次传入延迟时间时都乘以这个帧倍率，实现方式如：
 
 ```ts
 // 在游戏的 Loading 时设置当前设备基于 60 的倍率，保存为全局变量
@@ -91,7 +91,7 @@ let timer = new egret.Timer(GameData.frameRate * 1000, 4);
 
 ### 解法2：回调内部管理一个变量控制执行频率，类似节流
 
-解决思路：外部管理一个 `lastTimeStamp` 变量，在每次回调内部计算 `nowTimeStamp`，后者减去前者的时间差 `deltaTime` 大于等于*预期值*则执行回调。
+解决思路：外部管理一个 `lastTimeStamp` 变量，在每次回调内部计算 `nowTimeStamp`，后者减去前者的时间差 `deltaTime` 大于等于预期的 delay 则执行回调。
 
 ```ts
 public class Game extends eui.Component {
@@ -120,11 +120,11 @@ public class Game extends eui.Component {
 
 ### 解法3：使用 setTimeout(), setInterval() 代替 Egret Timer
 
-Egret timer 本质上基于 `requestAnimationFrame` 进行调用，setTimeout(), setInterval() 的定时器则基于宏任务管理，不受屏幕刷新率影响。但由于它们的回调是以宏任务的颗粒度进行，适合不追求完美时间精度的情况下采用。
+Egret timer 本质上基于 `requestAnimationFrame` 进行调用，setTimeout(), setInterval() 的定时器则基于宏任务管理，不受屏幕刷新率影响。但由于它们的回调是以宏任务的颗粒度进行，对于时间精度控制不那么完美时间的情况下可采用此方法。
 
 ### 解法4：修改 Timer 的源码
 
-如果要修改源码以兼容高刷新率设备的话，在 Timer 中，将 lastCount 的初始值设为 `60 * delay * 帧倍率`：
+可修改源码以兼容高刷新率设备，在 Timer 中，将 lastCount 的初始值设为 `60 * delay * 帧倍率`，下一节说明为什么这种方法可行：
 
 ```ts
 // egret-core/src/egret/utils/Timer.ts
@@ -148,11 +148,11 @@ export class Timer extends EventDispatcher {
 
 TL;DR，先说结论：
 
-1. Egret 引擎初始化时会以 `requestAnimationFrame` 的频率执行 SystemTicker 的单例 ticker 的 `update()` 方法。 
-2. 创建一个 Egret Timer 时，会将 Timer 对象的 `$update()` 方法保存到 ticker 的回调列表，并在ticker 的 `update()` 中调用，即 Timer 启动后也根据 `requestAnimationFrame` 的频率执行 `$update()` 方法。
-3. `$update()` 方法内部以 60fps 为基准，计算每次回调中是否达到了输入的延迟时间，120Hz 的设备调用回调很快，造成提前达成延迟时间的判断。
+1. Egret 引擎初始化时会以 `requestAnimationFrame` 的频率执行 `SystemTicker` 的单例 `ticker` 的 `update()` 方法，`ticker.update()` 可视为游戏引擎实现的 `game loop`。
+2. 创建一个 Egret Timer 时，会将 Timer 对象的 `$update()` 方法保存到 ticker 的回调列表，并在ticker 的 `update()` 中调用，即一个 Timer 启动后也根据 `requestAnimationFrame` 的频率执行 `$update()` 方法。
+3. `$update()` 方法内部以 `60次调用=1000ms` 为判断基准，计算每次回调是否达到了输入的延迟时间，120Hz 的设备调用回调很快，造成计时过快。
 
-先看 Timer([source](https://github.com/egret-labs/egret-core/blob/master/src/egret/utils/Timer.ts#L69))
+先看 Timer 的([源代码](https://github.com/egret-labs/egret-core/blob/master/src/egret/utils/Timer.ts#L69))
 
 ```ts
 // egret-core/src/egret/utils/Timer.ts
@@ -170,16 +170,16 @@ export class Timer extends EventDispatcher {
         return;
     }
     this._delay = value;
-    this.lastCount = this.updateInterval = Math.round(60 * value); // 此处重点，这个 lastCount 控制在 ticker 的频繁调用中，是否达到了输入的 delay，初始值为 60 * delay
+    this.lastCount = this.updateInterval = Math.round(60 * value); // 重点，这个 lastCount 控制在 ticker 的频繁调用中，是否达到了一次 delay，初始值为 60 * delay
   }
   public start() {
     if (this._running) return;
     this.lastCount = this.updateInterval;
     this.lastTimeStamp = getTimer();
-    ticker.$startTick(this.$update, this); // 此处重点，启动定时器是将定时器的 $update 方法作为参数，执行 ticker.$startTick
+    ticker.$startTick(this.$update, this); // 重点，启动定时器是将定时器的 $update 方法作为参数，传入 ticker.$startTick 方法中，这里看出定时器的更新基于 ticker 
     this._running = true;
   }
-  // $update 方法的功能是增加 currentCount，并派发 TimerEvent 事件
+  // $update 实现 Timer 的一次更新，具体来说是增加一个 currentCount 计数，并派发 TimerEvent 事件，并判断是否达到 Timer 的结束
   $update(timeStamp: number): boolean {
     let deltaTime = timeStamp - this.lastTimeStamp;
     if (deltaTime >= this._delay) {
@@ -208,10 +208,10 @@ export class Timer extends EventDispatcher {
 ```
 
 从 Timer 得到两个结论：
-1. ticker 会以一定频率调用 `$update` 方法，这个频率就是设备的刷新率，跟设备有关，与 Egret 引擎设置的帧率无关，Egret 引擎设置的帧率影响的是它对时间间隔的计算。
-2. `$update` 内部用 lastCount 变量管理是否达到了一次延迟。lastCount 初始值 60 * delay，每次固定减 1000，减到 0 时触发一次 Timer 事件。如计时 1000ms，则 60 次调用会触发一次 Timer 事件，60 Hz 设备用 1s 完成 60 次调用，实现计时 1000ms，120Hz 设备在 0.5 秒就完成调用，造成计时不准确。
+1. ticker 会以一定频率调用 `$update` 方法，看后面的源码知道，这个频率就是设备的刷新率，跟设备有关，与 Egret 引擎设置的帧率无关，Egret 引擎设置的帧率影响的是它对时间间隔的计算。
+2. `$update` 内部用 `lastCount` 变量管理是否达到了一次延迟。lastCount 初始值 60 * delay，每次固定减 1000，减到 0 时触发一次 Timer 事件。如计时 1000ms，需 60 次调用触发一次 Timer 事件，注意，这个`60次调用 = 1000ms` 的映射已经 hardcode 在这里源码中， 60 Hz 设备用完成 60 次调用花 1s，120Hz 设备完成 60 次调用只要 0.5 秒，这是造成计时不准确的直接原因。
 
-接下来看 ticker 如何以系统的刷新率调用 `$update`，寻径来到 `ticker`，[source](https://github.com/egret-labs/egret-core/blob/f7919d26a230d99c3b1f5b938b326159a2225e47/src/egret/player/SystemTicker.ts)，首先要看它的 `$startTick`
+接下来看 ticker 如何以系统的刷新率调用 `$update`，寻径来到 `ticker` 的[代码](https://github.com/egret-labs/egret-core/blob/f7919d26a230d99c3b1f5b938b326159a2225e47/src/egret/player/SystemTicker.ts)，首先要看它的 `$startTick`
 
 ```ts
 // egret-core/src/egret/player/SystemTicker.ts
@@ -228,10 +228,10 @@ export class SystemTicker {
 }
 ```
 
-`$startTick` 只是将回调函数加入 ticker 的 callBackList 中，那么回调们是在哪里执行的呢？这要看 ticker 的核心方法: `update()`：
+`$startTick` 只是将回调函数加入 ticker 的 callBackList 中，那么回调们在哪里执行呢？要看 ticker 的核心方法: `update()`：
 
 ```ts
-// 同样位于 SystemTicker 类中，这里略去了与定时器回调不相关的代码
+// 同样位于 SystemTicker 类，这里略去了与定时器回调不相关的代码
 /**
  * @private
  * 执行一次刷新
@@ -252,7 +252,7 @@ public update(forceUpdate?: boolean): void {
 }
 ```
 
-Timer 的 `$update` 在 ticker 的 `update` 方法内执行了，但 ticker 的 `update` 又是在哪里调用，以怎么频率调用？来到最后一站：`runEgret()` 方法, [source](https://github.com/egret-labs/egret-core/blob/f7919d26a230d99c3b1f5b938b326159a2225e47/src/egret/web/EgretWeb.ts)
+这里我们看到 ticker 每执行一次 `update` 就执行一次 Timer 的 `$update`，那么 ticker 的 `update` 又是在哪里调用，以怎么频率调用？来到最后一站：`runEgret()` 方法的[代码](https://github.com/egret-labs/egret-core/blob/f7919d26a230d99c3b1f5b938b326159a2225e47/src/egret/web/EgretWeb.ts)
 
 ```ts
 // egret-core/src/egret/web/EgretWeb.ts
@@ -296,12 +296,12 @@ function runEgret(options?: runEgretOptions): void {
 }
 ```
 
-在 `startTicker` 中看到 `ticker.update` 方法以 `requestAnimationFrame` 的回调频率进行调用。
+从上面看到 `startTicker` 就是以浏览器的 `requestAnimationFrame` 的调用频率调用计时单例 ticker。
 
-整个过程如下：
+综上，整个过程如下：
 1. Egret 引擎初始化时会以 `requestAnimationFrame` 的频率执行 SystemTicker 的单例 ticker 的 `update()` 方法。 
 2. 创建一个 Egret Timer 时，会将 Timer 对象的 `$update()` 方法保存到 ticker 的回调列表，并在ticker 的 `update()` 中调用，即 Timer 启动后也根据 `requestAnimationFrame` 的频率执行 `$update()` 方法。
-3. `$update()` 方法内部以 60fps 为基准，计算每次回调中是否达到了输入的延迟时间，120Hz 的设备调用回调很快，造成提前达成延迟时间的判断。
+3. `$update()` 方法内部 `60次调用=1000ms` 为判断基准，计算每次回调中是否达到了输入的延迟时间，120Hz 的设备调用回调很快，造成计时过快的现象。
 
 如要修改源码以兼容高刷新率设备的话，在 Timer 中，将 lastCount 的初始值设为 `60 * delay * 帧倍率`：
 
@@ -317,7 +317,7 @@ export class Timer extends EventDispatcher {
     }
     this._delay = value;
     // this.lastCount = this.updateInterval = Math.round(60 * value);
-    // 改为 frameRate 是当前设备对 60Hz 的倍率，需要动态计算，120Hz 的设备为 2,
+    // 上面那一行改为以下。frameRate 是当前设备对 60Hz 的倍率，需要动态计算，如 120Hz 的设备为 2,
     this.lastCount = this.updateInterval = Math.round(60 * value * frameRate);
   }
 }
