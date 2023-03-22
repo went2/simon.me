@@ -100,3 +100,5 @@ function headingRange(node: any, options: any, callback: any) {
     }
 }
 ```
+
+完成上述修改后就可直接使用 `remark-collapse` 插入 `<details>`、`<summary>` 元素。
