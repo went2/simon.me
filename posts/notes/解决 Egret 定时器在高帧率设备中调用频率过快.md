@@ -148,7 +148,7 @@ export class Timer extends EventDispatcher {
 
 TL;DR，先说结论：
 
-1. Egret 引擎初始化时会以 `requestAnimationFrame` 的频率执行 `SystemTicker` 的单例 `ticker` 的 `update()` 方法，`ticker.update()` 可视为游戏引擎实现的 `game loop`。
+1. Egret 引擎初始化时会以 `requestAnimationFrame` 的频率执行 `SystemTicker` 的单例 `ticker` 的 `update()` 方法。
 2. 创建一个 Egret Timer 时，会将 Timer 对象的 `$update()` 方法保存到 ticker 的回调列表，并在ticker 的 `update()` 中调用，即一个 Timer 启动后也根据 `requestAnimationFrame` 的频率执行 `$update()` 方法。
 3. `$update()` 方法内部以 `60次调用=1000ms` 为判断基准，计算每次回调是否达到了输入的延迟时间，120Hz 的设备调用回调很快，造成计时过快。
 
