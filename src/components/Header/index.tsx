@@ -53,9 +53,6 @@ const Header: NextPage = () => {
             </ul>
           </div>
         </div>
-        <p className={styles.indexAbout}>
-          I&apos;m Simon currently working as a Front-End developer.
-        </p>
       </section>
     </header>
   );
