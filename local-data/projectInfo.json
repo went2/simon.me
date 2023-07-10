@@ -2,6 +2,15 @@
   "expriments": {
     "items": [
       {
+        "name": "Pixel Editor",
+        "icon": "",
+        "cover": "https://github.com/went2/pixelEditor/assets/20923112/2bc48304-f341-47e8-8d50-5422104de30f",
+        "desc": "Draw and export your pixel art.",
+        "url": "https://pixel-me.netlify.app/",
+        "updateAt": "2023-07-05",
+        "tags": ["canvas"]
+      },
+      {
         "name": "M2R",
         "icon": "",
         "cover": "https://user-images.githubusercontent.com/20923112/223321822-2c57f13d-29a9-42d8-ab2b-81bd4d3223b8.gif",

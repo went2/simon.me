@@ -8,8 +8,6 @@ abstract: "关于我"
 
 # 关于
 
-- 关于我：一个普通人，目前职业是前端开发，没有天分，只尽人事。
-
 - [关于这个网站](/post/关于本站)
 
 - Email: simonfisher227@gmail.com
