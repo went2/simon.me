@@ -36,7 +36,7 @@ function collapse(opts: any) {
           children: [
             {
               type: "html",
-              value: "<details>",
+              value: "<details open>",
             },
             {
               type: "html",
