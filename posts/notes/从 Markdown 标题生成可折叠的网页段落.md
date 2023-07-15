@@ -1,5 +1,5 @@
 ---
-title: "从 Markdown 标题生成可折叠的网页段落"
+title: "从标题生成可折叠的网页段落"
 date: "2023-03-20"
 year: "2023"
 abstract: "修改 mdast-util-heading-range 库以实现需求的过程"
@@ -7,28 +7,30 @@ abstract: "修改 mdast-util-heading-range 库以实现需求的过程"
 
 ## 前言
 
-在 web 上发布的长文章，要以最直接的方式呈现大纲，让读者快速判断他所需的信息在哪个部分。一可以在文章开头列出本文大纲；二可以借助网页侧边栏的目录实现导航；三可以让文章内容根据标题范围折叠，这个功能常见于各种文本编辑器中，本着自己的项目多造轮子原则，实现了网页文章的按标题范围折叠内容的功能。
+发布到 Web 的文章，我希望一开始能呈现大纲，让观众先对全篇的话题范围有所把握，帮助判断他们需要的信息在哪部分。
 
-这里记录实现的思路和核心代码。
+本文介绍了一次自动从标题生成可折叠文章内容的实践。单就可折叠内容来说，HTML 提供的 `<details>` 与 `<summary>` 已具备内容折叠的能力，之所以有这次的实践，是因为网页的内容不来自直接编辑 HTML 文档，而是从 Markdown 文档编译而来，本文记录其中核心过程的实现：如何从 mast 语法树中识别标题及其内容的实践。
 
 ## 思路与代码
 
 ### 思路
 
 1. 网页折叠的实现方式，几种可选：
-	1）Html 原生交互：Html提供了 `<details>`、`<summary>` 标签标记内容的从属关系，浏览器为它们实现了折叠的效果，最省力的做法；
+	1）HTML 原生交互：HTML 提供了 `<details>`、`<summary>` 标签标记内容的从属关系，浏览器为它们实现了折叠的效果，最省力的做法；
 	2）CSS 实现：使用隐藏的 input 框记录展开/折叠状态，内容部分根据输入框的状态显示或隐藏
-	3）JavaScript 实现，事件监听、为内容区加减 CSS 类，或者直接操作 DOM。
-	我采用第一种。
-2. 从 Markdown 文本转为 HTML 文本过程中，识别出内容中的标题与段落范围，并插入 `<details>`、`<summary>` 元素，这里使用  和 `mdast-util-heading-range`
+	3）JavaScript 实现，事件监听、为内容区加减 CSS 类，或者直接修改相应 DOM。
+	
+  这里采用第一种原生语义化标签的方式。
+
+2. 从 Markdown 文本转为 HTML 文本过程（）中，需要识别出内容中的标题与**段落范围**，并插入 `<details>`、`<summary>` 元素，识别 Markdown 标题范围用到了 `remark-collapse` 这个工具库。
 
 ### 核心代码
 
-记录调整 `mdast-util-heading-range` 库以支持所有标题范围识别的代码。
+`remark-collapse` 并不完全满足我的要求，原因在于它内部使用了 `mdast-util-heading-range` 库检测 markdown 文本中的标题范围，而后者默认只识别文本中的第一个匹配到的标题范围，也就是直接使用 `remark-collapse` 的话，传入一篇有多个二级标题的 Markdown 文本，结果只会第一个二级标题有折叠效果。
 
-`remark-collapse` 库内部使用 `mdast-util-heading-range` 检测 markdown 文本中的标题范围。`mdast-util-heading-range` 默认只识别文本中的第一个匹配到的标题范围，也就是直接使用 `remark-collapse` 的话，传入一篇有多个二级标题(`##` 标识)的 markdown 文本，结果只是第一个二级标题有折叠效果，从使用的角度让我觉得迷惑。
+我看了几遍 `mdast-util-heading-range` 源码，确认是这个效果，便觉得迷惑，想着改一下它的源码以支持识别一篇文章的所有标题范围。
 
-于是将 `mdast-util-heading-range` 源代码复制到本地，改了改使它支持所有指定标题的范围识别。其核心是生成一个所有标题范围的结构，比如需要匹配二级标题，它首先会生成一个数组：
+将 `mdast-util-heading-range` 源代码复制到本地，看了看，改造的思路是生成一个所有标题范围的结构，比如需要匹配二级标题，首先生成一个数组：
 
 ```js
 [
@@ -101,4 +103,4 @@ function headingRange(node: any, options: any, callback: any) {
 }
 ```
 
-完成上述修改后就可直接使用 `remark-collapse` 插入 `<details>`、`<summary>` 元素。
+完成上述修改后，在 `remark-collapse` 中引用自己修改的 `headingRange`， 就识别全篇文章的指定标题，进而做自定义操作，如插入 `<details>`、`<summary>` 元素等。
