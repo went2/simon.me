@@ -7,11 +7,11 @@ abstract: "记录 React Router 6 的用法"
 
 # React Router 6 用法
 
-本文提到的路由指`前端路由`，指地址栏的 URL 改变后，浏览器不会拿当前的地址向服务器发起请求，而由 JavaScript 处理 url 的变化，异步获取数据，并更新局部页面。
+本文提到的路由指`前端路由`，指地址栏的 URL 改变后，不触发浏览器默认 GET 请求，而由 JavaScript 处理 URL 的变化，异步获取数据，更新局部页面的做法。
 
-浏览器端实现 url 变化而不刷新页面的方式有两种：
+浏览器实现 URL 变化而不刷新页面的方式有两种：
 
-  - 改变 url 的 hash 字段
+  - 改变 URL 的 hash 字段
   - 使用 History Api
 
 路由的核心是一张映射表，保存路径与对应组件的映射，写路由就是配置这种映射关系，然后在页面放上放上匹配到的组件的出口(outlet)。
@@ -38,7 +38,7 @@ React Router 是在 React 项目中实现前端路由的组件库，由社区维
 
 ## 5. 手动切换路由 6. 通过路由传数据 7. 封装高阶组件
 
-是对 react-router-dom 提供的 `useNavigate`、 `useParams`、 `useSearchParams`的使用，在函数式组件中导入直接使用，在类组件中需要通过高阶组件做增强。以下是一个增强路由功能的高阶组件。
+是对 `react-router-dom` 提供的 `useNavigate`、 `useParams`、 `useSearchParams`的使用，在函数式组件中导入直接使用，在类组件中需要通过高阶组件做增强。以下是一个增强路由功能的高阶组件。
 
 ```js
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
