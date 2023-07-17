@@ -1,6 +1,7 @@
 ---
 title: 'Vue3 响应式系统的核心实现'
 date: '2022-12-13'
+updatedAt: '2023-07-10'
 year: '2022'
 abstract: '实现一个 mini-vue 框架的“响应性”部分，分步骤记录'
 ---
@@ -97,7 +98,7 @@ msg1.value = '4444'; // 打印 rendering 4444，效果实现
 
 上面的 Dep 实现了一个基本值的响应性，现在要为一个普通对象设置响应性，即为每个对象的属性设置响应性，读取属性值，为这些属性保存它们的订阅者，修改属性值时，通知它们的订阅者。
 
-所以 Dep 不变，需要新增的是，拦截对象的每个属性的读写操作，为它们创建对应的 Dep 实例。如何监听对象属性的读取？
+所以把 Dep 中关于 _value 的存取独立实现为 `reactive()`，它接收一个对象，拦截对象的每个属性的读写操作，为它们创建对应的 Dep 实例，返回一个用户使用的响应式对象。如何监听对象属性的读取？
   - Vue2：`Object.defineProperty`，用存取描述符（accessor descriptor）重新定义对象的属性。在属性的 get() 中收集依赖，在 set() 中通知相关的 effect 进行执行。
   - Vue3：为每个对象创建代理对象 Proxy，监听对代理对象的读写操作。
 
@@ -163,72 +164,85 @@ info.name = 'tommy'; // 显示：effect3333 tommy，实现成功
 
 ## 阶段四：用 Proxy 实现 reactive()，其他不变
 
-将对象的属性拦截用 Proxy API 实现，全部代码如下所示：
+将对象的属性拦截用 Proxy API 实现，用 TS 做了简易类型设定，全部代码如下：
 
-```js
-function reactive3(raw) {
+```ts
+interface RawObj {
+  [key: string | symbol]: any;
+}
+type EffectFunc = (...args: any[]) => void;
+
+function reactive(raw: RawObj) {
   return new Proxy(raw, {
-    get(target, key, receiver) {
+    get(target, key) {
       const dep = getDep(target, key);
       dep.depend();
-      return Reflect(target, key, receiver);
+      return target[key];
     },
-    set(target, key, value, receiver) {
+    set(target, key, newValue) {
       const dep = getDep(target, key);
-      const result = Reflect.set(target, key, value, receiver);
+      const result = Reflect.set(target, key, newValue);
       dep.notify();
       return result;
-    }
+    },
   });
 }
 
 class Dep {
-  constructor(value) {
-    this._value = value;
+  public subscribers: Set<EffectFunc>;
+  constructor() {
     this.subscribers = new Set();
   }
-
-  get value() {
-    this.depend();
-    return this._value;
-  }
-
-  set value(newValue) {
-    this._value = newValue;
-    this.notify();
-  }
-
-  depend() {
-    if(activeEffect){
+  public depend() {
+    if (activeEffect) {
       this.subscribers.add(activeEffect);
     }
   }
-
-  notify() {
-    this.subscribers.forEach(effect => effect());
+  public notify() {
+    this.subscribers.forEach((effect) => effect());
   }
 }
 
+// WeakMap<Object, Map<string, Dep>>
 const targetMap = new WeakMap();
-function getDep(target, key) {
+function getDep(target: RawObj, key: string | symbol) {
   let depsMap = targetMap.get(target);
-  if(!depsMap) {
+  if (!depsMap) {
     depsMap = new Map();
     targetMap.set(target, depsMap);
   }
 
   let dep = depsMap.get(key);
-  if(!dep) {
+  if (!dep) {
     dep = new Dep();
     depsMap.set(key, dep);
   }
   return dep;
 }
 
-let activeEffect;
-function watchEffect(effect) {
+// watchEffect API
+let activeEffect: EffectFunc | null;
+function watchEffect(effect: EffectFunc) {
   activeEffect = effect;
   effect();
   activeEffect = null;
 }
+
+// 使用
+const user = reactive({ name: "james", gender: "male" });
+const style = reactive({ color: "red", margin: "12px" });
+
+watchEffect(() => {
+  console.log(`user gender changed to ${user.gender}`);
+});
+watchEffect(() => {
+  console.log(`style color changed to ${style.color}`);
+});
+
+user.gender = "female"; // 打印：user gender changed to female
+style.color = "blue"; // 打印：style color changed to blue
 ```
+
+将上述代码用 `ts-node` 测试可以得到预期结果。全部实现不到 100 行。
+
+完。
