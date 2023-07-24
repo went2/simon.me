@@ -9,7 +9,7 @@ abstract: '兼容高刷新率设备的 Egret 定时器处理方式'
 
 说明问题前先区别两个概念：
   1. 游戏引擎的 game loop 的频率，引擎执行一次 game loop 会生成一副完整的游戏界面，也叫一帧（frame），game loop 的频率即 fps（frame per second），这是游戏程序支持的特性；
-  2. 屏幕的刷新率，显示器每秒生成的画面，一个画面也叫一帧（frame），以赫兹（Hz）为单位，常见的显示器刷新率有 60Hz，高的可达 120Hz，乃至 240 Hz
+  2. 屏幕的刷新率，显示器每秒生成的画面，一个画面也叫一帧（frame），以赫兹（Hz）为单位，常见的显示器刷新率有 60Hz，高的可达 144Hz、240 Hz
 
 fps 和屏幕刷新率没有关系，fps 靠游戏程序来支持，屏幕刷新率则是硬件（显卡、显示器）的特性。
 
@@ -20,16 +20,16 @@ fps 和屏幕刷新率没有关系，fps 靠游戏程序来支持，屏幕刷新
 
 ## 1. 问题
 
-Egret 的定时器基于屏幕刷新率更新，在 60 帧每秒的屏幕刷新率下，输入 1000ms，会正确地计时 1s，但在更高刷新率的设备上，输入 1000ms，定时器实际执行时间是 1000/（真实刷新率/60），如，在 240Hz 的屏幕刷新率中，以 1000ms 为间隔执行 4次定时器：
+Egret 的定时器基于屏幕刷新率更新，在 60 Hz 设备上，输入 1000ms，会正确地计时 1s，但在更高刷新率的设备上，输入 1000ms，定时器实际执行时间是 1000/（真实刷新率/60），如，在 240Hz 的设备上，以 1000ms 为间隔执行 4 次定时器回调，预期总的执行时间为 4s，但实际上 1s 就会执行完
 
 ```ts
 let timer = new egret.Timer(1000, 4);
 time.start();
 ```
 
-该定时器会在 1s 左右执行完成，派发 `TimerEvent.TIMER_COMPLETE` 事件。
+该定时器会在 1s 左右执行完成，派发 `TimerEvent.TIMER_COMPLETE` 事件，因此使用定时器来管理游戏中的动画会出现高帧率设备上动画执行过快的现象。
 
-以下几种方式可对高帧率的设备做兼容：
+有几种方式可对高帧率的设备做兼容：
 
 ## 2. 解决方式
 
@@ -41,11 +41,14 @@ time.start();
 new egret.Timer(1000, 4);
 ```
 
+它在不同刷新率设备上的运行结果是：
 - 在 60Hz 设备上，能正常计数，4 秒执行完毕
 - 在 120Hz 设备上，会以 0.5s 执行 1 次，2 秒执行完毕
 - 在 240Hz 设备上，会以 0.25s 执行 1 次，1 秒执行完毕
 
-基于这个特性，定时器的 delay 是基于 60fps 为基准，那么在 120Hz 设备上的 1s 相当于 60fps 的 2s，所以传入的延迟时间应该是 `2000`ms，即延迟时间要根据当前设备的刷新率动态进行计算，算法是 delay * 帧倍率。帧倍率指当前设备的刷新率基于 60Hz 倍数。做法：可以在游戏一开始可以设置 1s 载入时间计算当前设备的帧率，除以 60 得到帧倍率，保存到游戏全局变量。之后每次传入延迟时间时都乘以这个帧倍率，实现方式如：
+基于这个规律，定时器的延迟以 60fps 为基准，那么在 120Hz 设备上的 1s 相当于 60fps 的 2s，所以传入的延迟时间应该是 `2000`ms，即延迟时间要根据当前设备的刷新率动态进行计算，算法是 delay * 帧倍率。帧倍率指当前设备的刷新率基于 60Hz 倍数。
+
+做法：可以在游戏一开始时设置 1s 载入时间计算当前设备的帧率，除以 60 得到帧倍率，保存到游戏全局变量。之后每次传入延迟时间时都乘以这个帧倍率，实现方式：
 
 ```ts
 // 在游戏的 Loading 时设置当前设备基于 60 的倍率，保存为全局变量
@@ -83,7 +86,7 @@ public LoadingUI extends eui.Component {
 }
 ```
 
-计算得到 `GameData.frameRate`后，在每次使用定时器输入延迟时间时乘以这个帧倍率，如：
+计算得到 `GameData.frameRate`后，在每次使用定时器输入延迟时间时乘以这个帧倍率：
 
 ```ts
 let timer = new egret.Timer(GameData.frameRate * 1000, 4);
@@ -120,7 +123,7 @@ public class Game extends eui.Component {
 
 ### 解法3：使用 setTimeout(), setInterval() 代替 Egret Timer
 
-Egret timer 本质上基于 `requestAnimationFrame` 进行调用，setTimeout(), setInterval() 的定时器则基于宏任务管理，不受屏幕刷新率影响。但由于它们的回调是以宏任务的颗粒度进行，对于时间精度控制不那么完美时间的情况下可采用此方法。
+Egret timer 最终是基于 `requestAnimationFrame` 进行调用，setTimeout(), setInterval() 的定时器则基于宏任务管理，不受屏幕刷新率影响。但由于它们的回调是以宏任务的颗粒度进行，对于时间精度控制不那么完美时间的情况下可采用此方法。
 
 ### 解法4：修改 Timer 的源码
 
@@ -149,7 +152,7 @@ export class Timer extends EventDispatcher {
 TL;DR，先说结论：
 
 1. Egret 引擎初始化时会以 `requestAnimationFrame` 的频率执行 `SystemTicker` 的单例 `ticker` 的 `update()` 方法。
-2. 创建一个 Egret Timer 时，会将 Timer 对象的 `$update()` 方法保存到 ticker 的回调列表，并在ticker 的 `update()` 中调用，即一个 Timer 启动后也根据 `requestAnimationFrame` 的频率执行 `$update()` 方法。
+2. 创建一个 Egret Timer 时，会将 Timer 对象的 `$update()` 方法保存到 ticker 的回调列表，并在ticker 的 `update()` 中调用，导致一个 Timer 启动后也根据 `requestAnimationFrame` 的频率执行 `$update()` 方法。
 3. `$update()` 方法内部以 `60次调用=1000ms` 为判断基准，计算每次回调是否达到了输入的延迟时间，120Hz 的设备调用回调很快，造成计时过快。
 
 先看 Timer 的([源代码](https://github.com/egret-labs/egret-core/blob/master/src/egret/utils/Timer.ts#L69))
@@ -211,7 +214,7 @@ export class Timer extends EventDispatcher {
 1. ticker 会以一定频率调用 `$update` 方法，看后面的源码知道，这个频率就是设备的刷新率，跟设备有关，与 Egret 引擎设置的帧率无关，Egret 引擎设置的帧率影响的是它对时间间隔的计算。
 2. `$update` 内部用 `lastCount` 变量管理是否达到了一次延迟。lastCount 初始值 60 * delay，每次固定减 1000，减到 0 时触发一次 Timer 事件。如计时 1000ms，需 60 次调用触发一次 Timer 事件，注意，这个`60次调用 = 1000ms` 的映射已经 hardcode 在这里源码中， 60 Hz 设备用完成 60 次调用花 1s，120Hz 设备完成 60 次调用只要 0.5 秒，这是造成计时不准确的直接原因。
 
-接下来看 ticker 如何以系统的刷新率调用 `$update`，寻径来到 `ticker` 的[代码](https://github.com/egret-labs/egret-core/blob/f7919d26a230d99c3b1f5b938b326159a2225e47/src/egret/player/SystemTicker.ts)，首先要看它的 `$startTick`
+接下来看 ticker 如何以系统的刷新率调用 `$update`，来到 `ticker` 的[代码](https://github.com/egret-labs/egret-core/blob/f7919d26a230d99c3b1f5b938b326159a2225e47/src/egret/player/SystemTicker.ts)，首先要看它的 `$startTick`
 
 ```ts
 // egret-core/src/egret/player/SystemTicker.ts
@@ -231,7 +234,7 @@ export class SystemTicker {
 `$startTick` 只是将回调函数加入 ticker 的 callBackList 中，那么回调们在哪里执行呢？要看 ticker 的核心方法: `update()`：
 
 ```ts
-// 同样位于 SystemTicker 类，这里略去了与定时器回调不相关的代码
+// 同样位于 SystemTicker 类，略去了与定时器回调不相关的代码
 /**
  * @private
  * 执行一次刷新
