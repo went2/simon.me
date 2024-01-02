@@ -2,7 +2,7 @@
 title: 'useState() 幕后发生的事'
 date: '2022-12-10'
 year: '2022'
-abstract: '谁帮组件记录并跟踪它的状态？'
+abstract: '谁帮组件记录并跟踪状态？'
 ---
 
 # useState() 幕后发生的事

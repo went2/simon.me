@@ -7,11 +7,11 @@ abstract: ""
 
 ## 前言
 
-最近我的推特时间线上充满了 chatGPT：有人拿奇奇怪怪的问题问它，有把Siri、小爱同学接上 chatGPT，然后发现这才是语音助手该有的样子，有用 GPT API 开发邮件文本润色器、网页翻译插件、故事生成器的。chatGPT 让普罗大众轻易接触到自然语言处理的前沿成果，如此神奇，自然好奇它的出现和发展。
+最近我的推特时间线上充满了 ChatGPT 调教：有拿奇怪问题问它的，有把它接入 Siri、小爱同学的，有用它做网页翻译插件、故事生成器的。ChatGPT 让普罗大众轻易接触到自然语言处理的前沿成果，如此神奇，自然好奇它的出现和发展。
 
-chatGPT 是 OpenAI 开发，在 GPT-3 系列大语言模型基础上经过微调（fine-tuned）后的人工智能聊天机（chatbot）。
+ChatGPT 是 OpenAI 开发，在 GPT-3 系列大语言模型基础上经过微调（fine-tuned）后的人工智能聊天机（chatbot）。
 
-欲识 chatGPT，先访 GPT-3，计划用两篇文章，简单罗列 GPT-3 语言模型的相关概念，以备再次遇及造访之便。文章的内容主要来自书籍[《GPT-3》](https://book.douban.com/subject/35852216/)一书。
+欲识 ChatGPT，先访 GPT-3，计划用两篇文章，简单罗列 GPT-3 语言模型的相关概念，以备再次遇及造访之便。文章的内容主要来自[《GPT-3》](https://book.douban.com/subject/35852216/)一书。
 
 第一篇讨论大语言模型（LLM，Large Language Model），第二篇讲 OpenAI API 的使用。
 
@@ -96,7 +96,7 @@ GPT-3 是个生成式模型是因为它能生成文本，生成式模型是统�
 
 #### 序列到序列架构
 
-Transformer 模型由 Google 在 2017 年发布的论文 `Attention is All Yuo Need` 中提出： 
+Transformer 模型由 Google 在 2017 年发布的论文 `Attention is All You Need` 中提出： 
 
 > 我们提出了一种新的简单网络架构，Transformer，仅基于注意力机制，完全不需要循环和卷积。在两个机器翻译任务上的实验表明，这些模型在质量上更优，同时更易于并行化，并且需要的训练时间也少得多。
 
@@ -155,7 +155,7 @@ OpenAI 将 GPT-3 通过 API 发布，使全球用户可以通过简单登录就�
 
 GPT-3 推出后引起了公众的关注，《麻省理工科技评论》将 GPT-3 评为 [2021 年 10 项突破性技术之一](https://www.technologyreview.com/2021/02/24/1014369/10-breakthrough-technologies-2021/)。
 
-在 chatGPT 火热如潮的当下，OpenAI 研究人员估计正在构建基于万亿参数的语言模型。我们已然进入大型语言模型的黄金时代，每个人都可以成为其中的一份子。
+在 ChatGPT 火热如潮的当下，OpenAI 研究人员估计正在构建基于万亿参数的语言模型。我们已然进入大型语言模型的黄金时代，每个人都可以成为其中的一份子。
 
 ## 4. 参考
 
