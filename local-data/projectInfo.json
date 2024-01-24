@@ -29,22 +29,13 @@
         "tags": ["mini-program"]
       },
       {
-        "name": "On The Road",
-        "icon": "fa fa-bed",
-        "cover": "https://user-images.githubusercontent.com/20923112/223387272-d422e7bf-37a0-455a-b921-61838fcfe1b0.gif",
-        "desc": "找民宿移动 H5 应用",
-        "url": "https://github.com/went2/trip-app",
-        "updateAt": "2022-09-20",
-        "tags": ["vue3", "pinia"]
-      },
-      {
         "name": "Cookit",
         "icon": "fa fa-shopping-basket ",
         "cover": "https://user-images.githubusercontent.com/20923112/223382334-a6c13282-7496-467f-80cd-a95e2bc11ed0.png",
         "desc": "查菜谱网页应用",
         "url": "https://cookit-simon.netlify.app/",
         "updateAt": "2020-03-10",
-        "tags": ["vanillaJS"]
+        "tags": ["ES6"]
       },
       {
         "name": "贪吃蛇",
@@ -53,7 +44,7 @@
         "desc": "贪吃蛇，吃吃吃",
         "url": "https://github.com/went2/greedy-snake",
         "updateAt": "2020-04-18",
-        "tags": ["vanillaJS"]
+        "tags": ["ES6"]
       },
       {
         "name": "Leave me unlogged",
@@ -65,6 +56,6 @@
         "tags": ["Chrome extension"]
       }
     ],
-    "description": "一些实验性的demo"
+    "description": "一些 demo"
   }
 }
