@@ -1,5 +1,5 @@
 // types
-import type { NextPageWithLayout } from './_app';
+import type { NextPageWithLayout } from './_app-back';
 import type { ReactElement } from 'react';
 
 // styles

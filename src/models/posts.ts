@@ -1,6 +1,5 @@
 /**
- * store of posts，相当于服务端
- * view 从这里获取文章数据
+ * store of posts，it runs on server-side
  */
 import fs from "fs";
 import path from "path";

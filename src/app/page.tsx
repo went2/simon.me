@@ -1,6 +1,6 @@
 import Home from './components/home';
 import Header from './components/header';
-import Footer from './components/footer'
+import Footer from './components/footer';
 import { getAllSortedPosts } from '../models/posts'
 
 async function getPosts() {
