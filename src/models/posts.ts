@@ -1,8 +1,7 @@
 /**
- * store of posts，这里相当于服务端
- * view 从这里获取文章数据，这里的数据来源于本地文件
+ * store of posts，相当于服务端
+ * view 从这里获取文章数据
  */
-
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";

@@ -1,6 +1,5 @@
 [
   { "name": "/ 文章", "path": "/posts " },
   { "name": "/ 实验", "path": "/projects" },
-  { "name": "/ 关于", "path": "/about" },
-  { "name": "/ 链接", "path": "/links" }
+  { "name": "/ 关于", "path": "/about" }
 ]
