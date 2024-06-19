@@ -16,7 +16,7 @@ import Layout from '../components/Layout';
 
 // pre-rendering
 export const getStaticProps: GetStaticProps = async (context) => {
-  const postList = getAllSortedPosts();
+  const postList = await getAllSortedPosts();
 
   // [{category: 'essays'}] to { 'essays':[] }
   const result: any = {};

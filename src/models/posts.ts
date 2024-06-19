@@ -33,27 +33,29 @@ const allPostFiles: TPostFileData[] = getFilesFromLocal(postDir);
  * 从本地 /posts 目录中获取所有.md文件，组成数组
  * 约定: /posts 文件下只有一层文件夹
  */
-export function getAllSortedPosts(): TPost[] {
-  const postList = allPostFiles.map((fileInfo) => {
-    const fileContent = fs.readFileSync(fileInfo.path, "utf8");
-    const matterResult = matter(fileContent);
-
-    return {
-      id: fileInfo.title,
-      category: fileInfo.category,
-      ...matterResult.data,
-    } as TPost;
-  });
-
-  // sort articles by date
-  return postList.sort(({ date: a }, { date: b }) => {
-    if (a < b) {
-      return 1;
-    } else if (a > b) {
-      return -1;
-    } else {
-      return 0;
-    }
+export function getAllSortedPosts(): Promise<TPost[]> {
+  return new Promise((resovle, _) => {
+    const postList = allPostFiles.map((fileInfo) => {
+      const fileContent = fs.readFileSync(fileInfo.path, "utf8");
+      const matterResult = matter(fileContent);
+  
+      return {
+        id: fileInfo.title,
+        category: fileInfo.category,
+        ...matterResult.data,
+      } as TPost;
+    });
+    // sort articles by descending order of date
+    const sorted = postList.sort(({ date: a }, { date: b }) => {
+      if (a < b) {
+        return 1;
+      } else if (a > b) {
+        return -1;
+      } else {
+        return 0;
+      }
+    });
+    resovle(sorted);
   });
 }
 

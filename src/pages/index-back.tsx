@@ -15,8 +15,8 @@ import type { GetStaticProps } from 'next';
 import { getAllSortedPosts, TPost } from '../models/posts';
 
 // pre-rendering
-export const getStaticProps: GetStaticProps = () => {
-  const postList = getAllSortedPosts();
+export const getStaticProps: GetStaticProps = async() => {
+  const postList = await getAllSortedPosts();
 
   // [{year: '2021'}] to { '2021':[] }
   const result: any = {};
