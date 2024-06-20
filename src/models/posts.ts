@@ -59,6 +59,7 @@ export function getAllSortedPosts(): Promise<TPost[]> {
 }
 
 export async function getPostInfoById(id: string) {
+  console.log('===========', id);
   const filePath = allPostFiles.find((item) => item.title === id)!.path;
 
   const fileContent = fs.readFileSync(filePath, "utf8");
@@ -82,4 +83,10 @@ export function getPostIds() {
       },
     };
   });
+}
+
+export function getPostIdList() {
+  let list = allPostFiles.map((postFile) => ({ id: postFile.title }));
+  console.log('========= getPostIdList allPostFiles', allPostFiles, list)
+  return allPostFiles.map((postFile) => ({ id: postFile.title }));
 }

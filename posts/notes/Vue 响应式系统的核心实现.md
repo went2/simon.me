@@ -1,5 +1,5 @@
 ---
-title: 'Vue3 响应式系统的核心实现'
+title: 'reactivity-of-vue3'
 date: '2022-12-13'
 updatedAt: '2023-07-10'
 year: '2022'

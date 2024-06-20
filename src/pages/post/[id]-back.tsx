@@ -1,5 +1,5 @@
 //types
-import type { NextPageWithLayout } from "../_app";
+import type { NextPageWithLayout } from "../_app-back";
 import { ReactElement } from "react";
 // styles
 import styles from "../../styles/PostDetail.module.scss";

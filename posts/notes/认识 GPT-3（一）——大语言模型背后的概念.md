@@ -1,5 +1,5 @@
 ---
-title: "认识 GPT-3（一）——大语言模型背后的概念"
+title: "intro-to-gpt3-p1"
 date: "2023-03-09"
 year: "2023"
 abstract: ""

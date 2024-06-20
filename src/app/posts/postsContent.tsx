@@ -17,11 +17,11 @@ const categoryI18n: any =  {
 }
 
 type PropsType = {
-  categoriedPosts?: { [key: string]: Array<TPost> }
+  categoriedPosts: { [key: string]: Array<TPost> }
 }
 
 export default function PostsContent(props: PropsType) {
-  const posts =  props.categoriedPosts!;
+  const posts =  props.categoriedPosts;
   return (
     <div className={styles.container}>
       <main className={styles.list}>

@@ -1,5 +1,5 @@
 ---
-title: '解决 Egret 定时器在高帧率设备中计数过快'
+title: 'egret-timer-issue-in-high-frame-rate'
 date: '2021-11-09'
 year: '2021'
 abstract: '兼容高刷新率设备的 Egret 定时器处理方式'

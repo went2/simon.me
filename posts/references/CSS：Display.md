@@ -1,5 +1,5 @@
 ---
-title: 'CSS：Display module'
+title: 'css-display-module'
 date: '2022-10-11'
 year: '2022'
 
