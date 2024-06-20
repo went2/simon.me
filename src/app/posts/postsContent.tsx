@@ -5,7 +5,6 @@ import styles from './postsContent.module.scss';
 
 // components
 import Link from 'next/link';
-import Header from '../components/compactHeader';
 
 import type { TPost } from '../../models/posts';
 

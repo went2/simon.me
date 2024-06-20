@@ -1,5 +1,6 @@
 // types
 import type { Metadata } from 'next'
+import type { LayoutPropsType } from './types';
 
 // css
 import '../styles/global.scss';
@@ -11,9 +12,7 @@ export const metadata: Metadata = {
   title: "Simon Fisher",
 }
 
-export default function RootLayout({
-  children,
-}: { children: React.ReactNode }) {
+export default function RootLayout({ children }: LayoutPropsType) {
 
   return (
     <html lang='en'>

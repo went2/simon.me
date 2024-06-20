@@ -16,7 +16,7 @@ async function getPostList() {
   return result;
 }
 
-export default async function Page() {
+export default async function PostsPage() {
   const posts = await getPostList();
   return (
     <PostsContent categoriedPosts={posts}></PostsContent>

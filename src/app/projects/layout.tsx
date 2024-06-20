@@ -3,7 +3,7 @@ import Footer from '../components/footer';
 
 import type { LayoutPropsType } from '../types';
 
-export default function PostsLayout({ children }: LayoutPropsType) {
+export default function ProjectsLayout({children}: LayoutPropsType) {
   return (
     <>
       <Header />

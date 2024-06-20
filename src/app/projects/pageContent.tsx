@@ -1,38 +1,20 @@
-// types
-import type { NextPageWithLayout } from "./_app";
-import type { ReactElement } from "react";
 
-// styles
-import styles from "../styles/Projects.module.scss";
+import styles from './pageContent.module.scss';
 
-// utils
-import { GetStaticProps } from "next";
-import { getProjectsInfo, IProjectInfo } from "../models/projects";
-
-// components
-import Header from "../components/CompactHeader";
-import Layout from "../components/Layout";
-import Link from "next/link";
+import Link from 'next/link';
 import Image from "next/image";
 
-export const getStaticProps: GetStaticProps = async () => {
-  const projects = await getProjectsInfo();
+import type { IProjectInfo } from "../../models/projects";
 
-  return {
-    props: {
-      projects,
-    },
-  };
-};
-
-const Projects: NextPageWithLayout = (props: {
-  projects?: {
+type ProjectsPropsType = {
+  projects: {
     items: IProjectInfo[];
     description: string;
   };
-}) => {
-  const { items, description } = props.projects!;
+};
 
+export default function Projects(props: ProjectsPropsType) {
+  const { items, description } = props.projects;
   return (
     <main className={styles.container}>
       <div className={styles.mainDesc}>{description}</div>
@@ -63,15 +45,4 @@ const Projects: NextPageWithLayout = (props: {
       </div>
     </main>
   );
-};
-
-Projects.getLayout = function getLayout(page: ReactElement) {
-  return (
-    <Layout>
-      <Header />
-      {page}
-    </Layout>
-  );
-};
-
-export default Projects;
+}
