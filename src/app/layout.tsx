@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 import type { LayoutPropsType } from './types';
 
 // css
-import '../styles/global.scss';
+import './global.scss';
 
 // components
 import Script from 'next/script';
