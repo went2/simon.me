@@ -1,0 +1,141 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+h2,
+h3 {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #323330;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+ul > li {
+  list-style-type: none;
+  line-height: 1.5;
+}
+
+ol > li {
+  line-height: 1.5;
+}
+
+p {
+  line-height: 1.6;
+  margin: 15px 0 0 0;
+}
+
+pre {
+  border: 1px dashed #ddd;
+  border-radius: 4px;
+  background: #fafafa;
+  padding: 1em;
+  font-size: 0.9rem;
+  overflow-x: scroll;
+}
+
+:root {
+  // base color
+  --minion-yellow: #f0db4f;
+  --background-light: #fff;
+  --dark-charcoal: #323330;
+
+  // text
+  --text-primary: #1b1b1b;
+  --text-secondary: #4e4e4e;
+  --text-link: #0069c2;
+  --text-inactive: rgba(158, 158, 158, 0.6);
+
+  --post-title-size: 24px;
+  --post-title-color: #112c22;
+
+  // common size
+  --container-max-width: 720px;
+}
+
+// set inner html style converted from markdown
+.mdContainer {
+  max-width: 720px;
+  margin: 0 auto;
+  color: #34495e;
+  padding: 0 1.5rem;
+  font-size: 1.1rem;
+
+  .date {
+    color: #646464;
+    margin: 0 0 -22px 5px;
+    font-style: italic;
+    margin-bottom: 2px;
+  }
+
+  h1,
+  h2,
+  h3 {
+    color: #343a40;
+    line-height: 1.6;
+  }
+
+  h2 {
+    display: none;
+  }
+  h3 {
+    font-size: 1.15rem;
+    margin-top: 30px;
+  }
+
+  details {
+    summary {
+      font-size: 1.3rem;
+      margin: 1.5rem 0;
+    }
+  }
+
+  // paragraph
+  p {
+    margin-top: 15px;
+    text-align: justify;
+  }
+
+  ul {
+    padding-left: 1rem;
+    li {
+      margin: 0.6rem 0 0 0.5rem;
+      list-style: disc;
+      line-height: 1.5;
+      a {
+        color: #34495e;
+        position: relative;
+        border-bottom: 3px solid #f0db4f;
+        transition: all 0.2 ease;
+      }
+    }
+
+    li > p {
+      margin-top: 15px;
+    }
+
+    li > ul > li {
+      list-style: circle;
+    }
+  }
+
+  img {
+    width: 100%;
+  }
+}

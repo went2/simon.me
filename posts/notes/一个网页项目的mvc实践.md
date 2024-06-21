@@ -1,5 +1,5 @@
 ---
-title: '一个网页项目的 MVC 实践'
+title: 'mvc-structure-practicing'
 date: '2022-11-27'
 year: '2022'
 abstract: '解释一个的查菜谱 demo 的前端 MVC 结构的实践'

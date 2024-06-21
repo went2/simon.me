@@ -1,0 +1,104 @@
+.container {
+  max-width: 740px;
+  margin: 1rem auto;
+  color: #343a40;
+  padding: 1.5rem;
+  font-size: 1.1rem;
+
+  .date {
+    color: #646464;
+    margin: 0 0 -22px 5px;
+    font-style: italic;
+    margin-bottom: 2px;
+  }
+
+  // define styles for text converted from markdown
+  h1,
+  h2,
+  h3 {
+    color: #343a40;
+    line-height: 1.5;
+  }
+  h2 {
+    display: none;
+  }
+  h3 {
+    font-size: 1.15rem;
+    margin-top: 30px;
+  }
+  details {
+    summary {
+      font-size: 1.3rem;
+      margin: 35px 0 16px 0;
+    }
+  }
+
+  // paragraph
+  p {
+    margin-top: 20px;
+    text-align: justify;
+  }
+
+  ul {
+    padding-left: 12px;
+
+    li {
+      line-height: 1.5;
+      margin: 0.6rem 0 0 0.5rem;
+      list-style: disc;
+    }
+
+    li > ul > li {
+      list-style: circle;
+    }
+
+    li > p {
+      margin-top: 15px;
+    }
+
+    // remove style of quoted in li ele
+    li:has(> blockquote) {
+      list-style: none !important;
+    }
+  }
+
+  img {
+    width: 100%;
+  }
+
+  // link
+  a {
+    color: #333;
+    position: relative;
+    border-bottom: 3px solid #f0db4f;
+    transition: all 0.2 ease;
+  }
+
+  // code
+  li code,
+  p code {
+    background-color: #fafafa;
+    border-radius: 4px;
+    padding: 0.25rem;
+    font-size: 1rem;
+    color: #1b1b1b;
+  }
+
+  pre {
+    overflow-x: scroll;
+  }
+
+  // blockquote
+  blockquote {
+    font-weight: 300;
+    padding: 0 0 0 1.4rem;
+    margin: 0 2rem 1rem 0;
+    border-left: 0.2em solid #f0db4f;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    box-shadow: none;
+  }
+}

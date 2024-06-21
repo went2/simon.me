@@ -1,5 +1,5 @@
 ---
-title: '漫谈面向对象的 JavaScript：创建对象和实现继承'
+title: 'the-object-oriented-javascript'
 date: '2022-02-28'
 year: '2022'
 abstract: '面向对象是一种编程范式，编程语言实现支持面向对象开发的特性，程序员使用面向对象的思路进行开发。讨论 JavaScript 的面向对象，是说它如何在语言层面实现面向对象的特性。'

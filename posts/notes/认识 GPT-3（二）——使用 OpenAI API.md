@@ -1,5 +1,5 @@
 ---
-title: "认识 GPT-3 （二）——使用 OpenAI API"
+title: "intro-to-gpt3-p2"
 date: "2023-03-12"
 year: "2023"
 abstract: ""

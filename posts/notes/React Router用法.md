@@ -1,5 +1,5 @@
 ---
-title: "React Router 6 用法"
+title: "using-react-router-6"
 date: "2022-12-08"
 year: "2022"
 abstract: "记录 React Router 6 的用法"
