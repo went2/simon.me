@@ -9,7 +9,6 @@ export async function generateStaticParams() {
 }
 
 async function getPost(params: { id: string }) {
-  console.log('===========getPost params', params)
   const post = await getPostInfoById(params.id);
   return post;
 }
@@ -21,6 +20,8 @@ type DetailPagePropsType = {
 }
 
 export default async function DetailPage({params}: DetailPagePropsType) {
+  // note: the data in params is URL encoded
+  // eg: { id: '' } returned by getPostIdList is like { id: '%E8%AF%BB%E4%B9%A6' } in params
   const post = await getPost(params);
   return <>
     <PageContent detail={post} />

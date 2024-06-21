@@ -21,5 +21,4 @@ export default async function PostsPage() {
   return (
     <PostsContent categoriedPosts={posts}></PostsContent>
   );
-
 }

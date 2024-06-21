@@ -1,5 +1,5 @@
 /**
- * store of posts，it runs on server-side
+ * store of posts，runs on server-side
  */
 import fs from "fs";
 import path from "path";
@@ -58,23 +58,6 @@ export function getAllSortedPosts(): Promise<TPost[]> {
   });
 }
 
-export async function getPostInfoById(id: string) {
-  console.log('===========', id);
-  const filePath = allPostFiles.find((item) => item.title === id)!.path;
-
-  const fileContent = fs.readFileSync(filePath, "utf8");
-
-  const matterResult = matter(fileContent);
-
-  const htmlContent = await generateHtmlFromMd(matterResult.content);
-
-  return {
-    id,
-    htmlContent,
-    ...matterResult.data,
-  } as TPost;
-}
-
 export function getPostIds() {
   return allPostFiles.map((postFile) => {
     return {
@@ -87,6 +70,22 @@ export function getPostIds() {
 
 export function getPostIdList() {
   let list = allPostFiles.map((postFile) => ({ id: postFile.title }));
-  console.log('========= getPostIdList allPostFiles', allPostFiles, list)
-  return allPostFiles.map((postFile) => ({ id: postFile.title }));
+  return list;
+}
+
+export async function getPostInfoById(id: string) {
+  // id is URL encoded like '%E8%AF%BB%E4%B9%A6'
+  const decodedId = decodeURIComponent(id);
+
+  const filePath = allPostFiles.find((item) => item.title === decodedId)!.path;
+  const fileContent = fs.readFileSync(filePath, "utf8");
+
+  const matterResult = matter(fileContent);
+  const htmlContent = await generateHtmlFromMd(matterResult.content);
+
+  return {
+    id,
+    htmlContent,
+    ...matterResult.data,
+  } as TPost;
 }

@@ -35,7 +35,7 @@ export default function PostsContent(props: PropsType) {
                     posts[category].map(post => (
                       <h3 key={post.id}>
                         <Link href={`/post/${post.id}`} className={styles.postItemTitle}>
-                          {post.title}
+                          {post.id}
                         </Link>
                       </h3>
                     ))
